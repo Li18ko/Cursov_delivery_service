@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5deec214-f450-428d-adf7-40b9644e7c48" name="Changes" comment="начальное окно+регистрация+вход, 4 рабочие кнопки">
+    <list default="true" id="5deec214-f450-428d-adf7-40b9644e7c48" name="Changes" comment="начальное окно+регистрация+вход, 4 рабочие кнопки + обновка">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/DatabaseConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,11 +81,19 @@
       <option name="project" value="LOCAL" />
       <updated>1687369263338</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="начальное окно+регистрация+вход, 4 рабочие кнопки + обновка">
+      <created>1687369829016</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1687369829016</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="начальное окно+регистрация+вход, 4 рабочие кнопки" />
-    <option name="LAST_COMMIT_MESSAGE" value="начальное окно+регистрация+вход, 4 рабочие кнопки" />
+    <MESSAGE value="начальное окно+регистрация+вход, 4 рабочие кнопки + обновка" />
+    <option name="LAST_COMMIT_MESSAGE" value="начальное окно+регистрация+вход, 4 рабочие кнопки + обновка" />
   </component>
 </project>
