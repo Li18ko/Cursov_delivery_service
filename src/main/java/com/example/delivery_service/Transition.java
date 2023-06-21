@@ -9,12 +9,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class transition {
+public class Transition {
     public static  void changeScene(ActionEvent event, String fxml, String title){
         Parent root = null;
 
         try{
-            root = FXMLLoader.load(transition.class.getResource(fxml));
+            root = FXMLLoader.load(Transition.class.getResource(fxml));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

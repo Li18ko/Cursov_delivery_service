@@ -10,7 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-public class registrationController {
+public class RegistrationController {
 
     @FXML
     private ResourceBundle resources;
@@ -44,7 +44,7 @@ public class registrationController {
         backRegistration.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                transition.changeScene(event, "startSheet.fxml", "Delivery Service");
+                Transition.changeScene(event, "startSheet.fxml", "Delivery Service");
             }
         });
     }

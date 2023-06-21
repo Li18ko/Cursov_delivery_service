@@ -10,7 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-public class entryController {
+public class EntryController {
 
     @FXML
     private ResourceBundle resources;
@@ -35,7 +35,7 @@ public class entryController {
         back.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                transition.changeScene(event, "startSheet.fxml", "Delivery Service");
+                Transition.changeScene(event, "startSheet.fxml", "Delivery Service");
             }
         });
 

@@ -8,7 +8,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class startSheetController {
+public class StartSheetController {
 
     @FXML
     private ResourceBundle resources;
@@ -27,13 +27,13 @@ public class startSheetController {
         entry.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                transition.changeScene(event, "entry.fxml", "Вход");
+                Transition.changeScene(event, "entry.fxml", "Вход");
             }
         });
         registration.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                transition.changeScene(event, "registration.fxml", "Регистрация");
+                Transition.changeScene(event, "registration.fxml", "Регистрация");
             }
         });
     }
