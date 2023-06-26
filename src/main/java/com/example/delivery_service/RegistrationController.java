@@ -1,6 +1,7 @@
 package com.example.delivery_service;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -47,6 +48,30 @@ public class RegistrationController {
                 Transition.changeScene(event, "startSheet.fxml", "Delivery Service");
             }
         });
+
+        registration.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    registerUser();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+                Transition.changeScene(event, "base.fxml", "Delivery Service");
+            }
+        });
     }
 
+    private void registerUser() throws SQLException, ClassNotFoundException {
+        String nameText = name.getText();
+        String numberText = number.getText();
+        String addressText = address.getText();
+        String loginRegistrationText = loginRegistration.getText();
+        String passwordRegistrationText = passwordRegistration.getText();
+
+        User user = new User(nameText, numberText, addressText, loginRegistrationText, passwordRegistrationText);
+        DatabaseConnection.getInstance().registerUser(user);
+    }
 }

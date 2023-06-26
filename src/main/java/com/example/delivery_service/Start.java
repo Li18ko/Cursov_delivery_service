@@ -7,10 +7,13 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Start extends Application {
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws IOException, SQLException, ClassNotFoundException {
         Parent root = FXMLLoader.load(getClass().getResource("startSheet.fxml"));
         Scene scene = new Scene(root, 700, 650);
         stage.setTitle("Delivery Service");

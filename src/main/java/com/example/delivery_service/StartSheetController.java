@@ -24,7 +24,7 @@ public class StartSheetController {
 
     @FXML
     void initialize() {
-        entry.setOnAction(new EventHandler<ActionEvent>() {
+        entry.setOnAction(new EventHandler<>() {
             @Override
             public void handle(ActionEvent event) {
                 Transition.changeScene(event, "entry.fxml", "Вход");
@@ -37,6 +37,8 @@ public class StartSheetController {
             }
         });
     }
+
+
 
 }
 
