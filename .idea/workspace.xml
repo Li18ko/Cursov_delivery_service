@@ -4,16 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5deec214-f450-428d-adf7-40b9644e7c48" name="Changes" comment="+ подключение к бд">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/baseController.java" afterDir="false" />
+    <list default="true" id="5deec214-f450-428d-adf7-40b9644e7c48" name="Changes" comment="регистрация + вход в аккаунт, запись данных в бд">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/DatabaseConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/EntryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/EntryController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/RegistrationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Start.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Start.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/StartSheetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/StartSheetController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/entry.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/entry.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/registration.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/registration.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +49,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "D:/учеба/прикладное программирование/proba",
+    "last_opened_file_path": "D:/учеба/прикладное программирование/Курсовой проект/delivery_service",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
@@ -116,13 +113,21 @@
       <option name="project" value="LOCAL" />
       <updated>1687432106584</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="регистрация + вход в аккаунт, запись данных в бд">
+      <created>1687823520781</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1687823520781</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="начальное окно+регистрация+вход, 4 рабочие кнопки" />
     <MESSAGE value="начальное окно+регистрация+вход, 4 рабочие кнопки + обновка" />
     <MESSAGE value="+ подключение к бд" />
-    <option name="LAST_COMMIT_MESSAGE" value="+ подключение к бд" />
+    <MESSAGE value="регистрация + вход в аккаунт, запись данных в бд" />
+    <option name="LAST_COMMIT_MESSAGE" value="регистрация + вход в аккаунт, запись данных в бд" />
   </component>
 </project>

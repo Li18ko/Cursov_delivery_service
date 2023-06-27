@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
 
 public class RegistrationController {
 
@@ -21,6 +22,9 @@ public class RegistrationController {
 
     @FXML
     private TextField address;
+
+    @FXML
+    private Label warningPassword;
 
     @FXML
     private Button backRegistration;
@@ -40,6 +44,7 @@ public class RegistrationController {
     @FXML
     private Button registration;
 
+
     @FXML
     void initialize() {
         backRegistration.setOnAction(new EventHandler<ActionEvent>() {
@@ -53,13 +58,35 @@ public class RegistrationController {
             @Override
             public void handle(ActionEvent event) {
                 try {
-                    registerUser();
+                    if (name.getText() == "" || name.getText().length() > 30)
+                        name.setText("Имя некорректное");
+
+                    if (number.getText() == "" || number.getText().length() != 12 ||
+                            (number.getText().charAt(0) != '+' && number.getText().charAt(1) != '7'))
+                        number.setText("Номер некорректный");
+
+                    if (address.getText() == "" || address.getText().length() > 50 || address.getText().length() < 15)
+                        address.setText("Адрес некорректный");
+
+                    if (loginRegistration.getText() == "" || loginRegistration.getText().length() > 20 || DatabaseConnection.getInstance().isLoginExists(loginRegistration.getText())){
+                        if (DatabaseConnection.getInstance().isLoginExists(loginRegistration.getText())){
+                            loginRegistration.setText("Логин занят");
+                        }
+                        else loginRegistration.setText("Логин некорректный");
+                    }
+
+                    if (passwordRegistration.getText() == "" || passwordRegistration.getText().length() > 30 || passwordRegistration.getText().length() < 6){
+                        warningPassword.setText("* Пароль должен быть от 6 до 30 символов");
+                    }
+                    else{
+                        registerUser();
+                        Transition.changeScene(event, "base.fxml", "Delivery Service");
+                    }
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 } catch (ClassNotFoundException e) {
                     throw new RuntimeException(e);
                 }
-                Transition.changeScene(event, "base.fxml", "Delivery Service");
             }
         });
     }
@@ -73,5 +100,6 @@ public class RegistrationController {
 
         User user = new User(nameText, numberText, addressText, loginRegistrationText, passwordRegistrationText);
         DatabaseConnection.getInstance().registerUser(user);
+
     }
 }

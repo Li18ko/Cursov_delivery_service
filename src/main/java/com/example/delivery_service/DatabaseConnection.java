@@ -43,12 +43,19 @@ public class DatabaseConnection{
     }
 
     public ResultSet getUser(User user) throws SQLException {
-        ResultSet resSet = null;
         String query = "SELECT * FROM users WHERE login = ? AND password = ?";
         PreparedStatement statement = connection.prepareStatement(query);
-        statement.setString(1, user.getName());
+        statement.setString(1, user.getLogin());
         statement.setString(2, user.getPassword());
-        ResultSet result = statement.executeQuery();
-        return resSet;
+        ResultSet resultSet = statement.executeQuery();
+        return resultSet;
+    }
+
+    public boolean isLoginExists(String login) throws SQLException {
+        String query = "SELECT COUNT(*) FROM users WHERE login = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, login);
+        ResultSet resultSet = statement.executeQuery();
+        return resultSet.next() && resultSet.getInt(1) > 0;
     }
 }

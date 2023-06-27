@@ -21,16 +21,23 @@
                   <Font size="13.0" />
                </font>
             </Button>
-            <PasswordField fx:id="passwordRegistration" layoutX="239.0" layoutY="368.0" prefHeight="38.0" prefWidth="194.0" promptText="Пароль" />
-            <TextField fx:id="loginRegistration" layoutX="239.0" layoutY="313.0" prefHeight="38.0" prefWidth="193.0" promptText="Логин" />
+            <PasswordField fx:id="passwordRegistration" layoutX="124.0" layoutY="369.0" prefHeight="38.0" prefWidth="194.0" promptText="Пароль" />
+            <TextField fx:id="loginRegistration" layoutX="125.0" layoutY="315.0" prefHeight="38.0" prefWidth="193.0" promptText="Логин" />
                 <Label layoutX="222.0" layoutY="56.0" style="-fx-background-color: E7DBDB;" text="Регистрация" textFill="#512929">
                     <font>
                         <Font size="40.0" />
                     </font>
                 </Label>
-            <TextField fx:id="name" layoutX="239.0" layoutY="152.0" prefHeight="38.0" prefWidth="193.0" promptText="Имя" />
-            <TextField fx:id="number" layoutX="239.0" layoutY="205.0" prefHeight="38.0" prefWidth="193.0" promptText="Номер телефона" />
-            <TextField fx:id="address" layoutX="239.0" layoutY="258.0" prefHeight="38.0" prefWidth="193.0" promptText="Адрес" />
+            <TextField fx:id="name" layoutX="125.0" layoutY="148.0" prefHeight="38.0" prefWidth="193.0" promptText="Имя" />
+            <TextField fx:id="number" layoutX="125.0" layoutY="205.0" prefHeight="38.0" prefWidth="193.0" promptText="Номер телефона" />
+            <TextField fx:id="address" layoutX="125.0" layoutY="258.0" prefHeight="38.0" prefWidth="193.0" promptText="Адрес" />
+            <Label fx:id="warningNumber" layoutX="333.0" layoutY="215.0" text="* Пример: +70000000000" />
+            <Label fx:id="warningAddress" layoutX="333.0" layoutY="268.0" text="* г. Севастополь, проспект Античный 30, квартира 30" />
+            <Label fx:id="warningName" layoutX="333.0" layoutY="158.0" text="* До 30 символов включительно" />
+            <Label fx:id="warningLogin" layoutX="333.0" layoutY="325.0" text="* До 20 символов включительно" />
+            <Label fx:id="warningPassword" layoutX="330.0" layoutY="379.0" text="* Не меньше 6 символов, но не больше 30 включительно" />
+            <Label fx:id="advertisement" layoutX="229.0" layoutY="567.0" text="* - поля обязательные для заполнения" />
+            <Label layoutX="342.0" layoutY="287.0" text="До 50 символов включительно" />
          </children></AnchorPane>
     </children>
 </AnchorPane>
