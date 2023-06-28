@@ -37,7 +37,7 @@
             <Label fx:id="warningLogin" layoutX="333.0" layoutY="325.0" text="* До 20 символов включительно" />
             <Label fx:id="warningPassword" layoutX="330.0" layoutY="379.0" text="* Не меньше 6 символов, но не больше 30 включительно" />
             <Label fx:id="advertisement" layoutX="229.0" layoutY="567.0" text="* - поля обязательные для заполнения" />
-            <Label layoutX="342.0" layoutY="287.0" text="До 50 символов включительно" />
+            <Label layoutX="342.0" layoutY="287.0" text="До 100 символов включительно" />
          </children></AnchorPane>
     </children>
 </AnchorPane>

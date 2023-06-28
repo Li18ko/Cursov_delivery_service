@@ -58,4 +58,12 @@ public class DatabaseConnection{
         ResultSet resultSet = statement.executeQuery();
         return resultSet.next() && resultSet.getInt(1) > 0;
     }
+
+    public boolean checkNumber(String number) throws SQLException {
+        String query = "SELECT number FROM clients WHERE number = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, number);
+        ResultSet resultSet = statement.executeQuery();
+        return resultSet.next();
+    }
 }

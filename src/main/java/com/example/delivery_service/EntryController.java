@@ -1,6 +1,7 @@
 package com.example.delivery_service;
 
 import java.net.URL;
+import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -54,14 +55,17 @@ public class EntryController {
                     error.setText("Неверный логин или пароль");
                 }
                 try{
-                if(loginUser(loginText, passwordText))
-                    Transition.changeScene(event, "base.fxml", "Delivery Service");
+                    String hashedPassword = PasswordHasher.hashPassword(passwordText);
+                    if(loginUser(loginText, hashedPassword))
+                        Transition.changeScene(event, "base.fxml", "Delivery Service");
                 else
                     error.setText("Неверный логин или пароль");
                 }
                 catch (SQLException e) {
                     throw new RuntimeException(e);}
                 catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                } catch (NoSuchAlgorithmException e) {
                     throw new RuntimeException(e);
                 }
             }
