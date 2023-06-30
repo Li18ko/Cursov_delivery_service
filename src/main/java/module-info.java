@@ -3,6 +3,7 @@ module com.example.delivery_service {
     requires javafx.fxml;
     requires java.sql;
     requires java.desktop;
+    requires java.prefs;
 
 
     opens com.example.delivery_service to javafx.fxml;

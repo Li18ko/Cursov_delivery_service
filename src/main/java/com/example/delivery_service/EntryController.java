@@ -5,6 +5,7 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.prefs.Preferences;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -37,6 +38,12 @@ public class EntryController {
     @FXML
     private PasswordField password;
 
+    private static String userLogin;
+
+    public static String getUserLogin() {
+        return userLogin;
+    }
+
     @FXML
     void initialize() {
         back.setOnAction(new EventHandler<ActionEvent>() {
@@ -56,8 +63,11 @@ public class EntryController {
                 }
                 try{
                     String hashedPassword = PasswordHasher.hashPassword(passwordText);
-                    if(loginUser(loginText, hashedPassword))
+                    if(loginUser(loginText, hashedPassword)){
                         Transition.changeScene(event, "base.fxml", "Delivery Service");
+                        userLogin = login.getText();
+                    }
+
                 else
                     error.setText("Неверный логин или пароль");
                 }
@@ -75,10 +85,10 @@ public class EntryController {
 
     private boolean loginUser(String loginText, String passwordText) throws SQLException, ClassNotFoundException {
         boolean flag = false;
-        User user = new User();
-        user.setLogin(loginText);
-        user.setPassword(passwordText);
-        ResultSet resultSet = DatabaseConnection.getInstance().getUser(user);
+        Client client = new Client();
+        client.setLogin(loginText);
+        client.setPassword(passwordText);
+        ResultSet resultSet = DatabaseConnection.getInstance().getUser(client);
         if(resultSet.next()) {
             flag = true;
         }

@@ -1,13 +1,15 @@
 package com.example.delivery_service;
 
-public class User {
+import java.time.LocalDateTime;
+
+public class Client {
     private String name;
     private String number;
     private String address;
     private String login;
     private String password;
 
-    public User(String name, String number, String address, String login, String password) {
+    public Client(String name, String number, String address, String login, String password) {
         this.name = name;
         this.number = number;
         this.address = address;
@@ -15,8 +17,11 @@ public class User {
         this.password = password;
     }
 
-    public User(){
+    public Client(){
 
+    }
+
+    public Client(String typeDeliveryText, String weightText, LocalDateTime data) {
     }
 
     public String getName() {

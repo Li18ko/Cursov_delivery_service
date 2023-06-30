@@ -1,8 +1,6 @@
 package com.example.delivery_service;
 
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -74,7 +72,7 @@ public class RegistrationController {
 
                         if (number.getText() == "" || number.getText().length() != 12 ||
                                 (number.getText().charAt(0) != '+' && number.getText().charAt(1) != '7') ||
-                                DatabaseConnection.getInstance().checkNumber(number.getText())) {
+                                DatabaseConnection.getInstance().checkNumber(number.getText())){
                             if (DatabaseConnection.getInstance().checkNumber(number.getText())) {
                                 number.setText("Номер занят");
                             } else number.setText("Номер некорректный");
@@ -96,7 +94,8 @@ public class RegistrationController {
 
                     else {
                         registerUser();
-                        Transition.changeScene(event, "base.fxml", "Delivery Service");
+                        Transition.changeScene(event, "startSheet.fxml", "Delivery Service");
+
                     }
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
@@ -119,8 +118,9 @@ public class RegistrationController {
 
         String hashedPassword = PasswordHasher.hashPassword(passwordRegistrationText);
 
-        User user = new User(nameText, numberText, addressText, loginRegistrationText, hashedPassword);
-        DatabaseConnection.getInstance().registerUser(user);
+        Client client = new Client(nameText, numberText, addressText, loginRegistrationText, hashedPassword);
+
+        DatabaseConnection.getInstance().registerUser(client);
 
     }
 }
