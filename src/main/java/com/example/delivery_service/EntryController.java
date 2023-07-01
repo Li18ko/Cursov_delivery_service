@@ -34,16 +34,18 @@ public class EntryController {
 
     @FXML
     private TextField login;
-
     @FXML
     private PasswordField password;
 
     private static String userLogin;
+    private static int role;
 
     public static String getUserLogin() {
         return userLogin;
     }
-
+    public static int getRole() {
+        return role;
+    }
     @FXML
     void initialize() {
         back.setOnAction(new EventHandler<ActionEvent>() {
@@ -56,20 +58,26 @@ public class EntryController {
         entry.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                String loginText = login.getText();
                 String passwordText = password.getText();
+                String loginText = login.getText();
+
                 if (loginText == "" || passwordText == ""){
                     error.setText("Неверный логин или пароль");
                 }
                 try{
                     String hashedPassword = PasswordHasher.hashPassword(passwordText);
+                    role = DatabaseConnection.getInstance().checkRole(loginText);
                     if(loginUser(loginText, hashedPassword)){
-                        Transition.changeScene(event, "base.fxml", "Delivery Service");
                         userLogin = login.getText();
+                        if (getRole() == 1){
+                            Transition.changeScene(event, "base.fxml", "Client");
+                        }
+                        else if (getRole() == 2){
+                            Transition.changeScene(event, "baseManager.fxml", "Manager");
+                        }
                     }
-
-                else
-                    error.setText("Неверный логин или пароль");
+                    else
+                        error.setText("Неверный логин или пароль");
                 }
                 catch (SQLException e) {
                     throw new RuntimeException(e);}
@@ -94,5 +102,6 @@ public class EntryController {
         }
         return flag;
     }
+
 
 }
