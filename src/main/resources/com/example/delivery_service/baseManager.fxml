@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="700.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.delivery_service.BaseManagerController">
+    <children>
+        <AnchorPane layoutX="3.0" layoutY="3.0" prefHeight="644.0" prefWidth="694.0" style="-fx-background-color: E7DBDB;">
+         <children>
+            <Button fx:id="exit" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: beige;" text="Выйти" textAlignment="CENTER" />
+            <Button fx:id="registrCourier" layoutX="516.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: beige;" text="Зарегистрировать курьера" />
+         </children></AnchorPane>
+        <AnchorPane layoutX="6.0" layoutY="59.0" prefHeight="582.0" prefWidth="686.0" style="-fx-background-color: beige;">
+         <children>
+            <ScrollPane prefHeight="582.0" prefWidth="686.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="583.0" prefWidth="688.0">
+                     <children>
+                        <TableView fx:id="table" prefHeight="582.0" prefWidth="686.0">
+                          <columns>
+                            <TableColumn fx:id="parcels_id" prefWidth="64.80001384019852" text="id_посылки" />
+                            <TableColumn fx:id="weight" prefWidth="78.4000015258789" text="Вес, кг" />
+                              <TableColumn fx:id="typeDelivery" prefWidth="94.4000244140625" text="Тип доставки" />
+                              <TableColumn fx:id="data" prefWidth="122.40003967285156" text="Дата оформления" />
+                              <TableColumn fx:id="center_delivery" prefWidth="203.19992065429688" text="Центр выдачи" />
+                              <TableColumn fx:id="ok" prefWidth="115.99993896484375" text="Подтвердить" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
+    </children>
+</AnchorPane>
