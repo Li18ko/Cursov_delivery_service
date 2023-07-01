@@ -82,7 +82,7 @@ public class BaseController {
                         id.setText("Введены неверные данные");}
                     else{
                         makeOrder();
-                        Transition.changeScene(event, "base.fxml", "Delivery Service");
+                        Transition.changeScene(event, "base.fxml", "Client");
                         parcleStatus();
 
 

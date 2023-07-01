@@ -75,6 +75,12 @@ public class EntryController {
                         else if (getRole() == 2){
                             Transition.changeScene(event, "baseManager.fxml", "Manager");
                         }
+                        else if (getRole() == 3){
+                            Transition.changeScene(event, "baseCourier.fxml", "Courier");
+                        }
+                        else if (getRole() == 4){
+                            Transition.changeScene(event, "baseAdmin.fxml", "ADMIN");
+                        }
                     }
                     else
                         error.setText("Неверный логин или пароль");

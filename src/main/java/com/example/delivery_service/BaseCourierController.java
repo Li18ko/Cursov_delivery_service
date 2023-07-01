@@ -15,10 +15,8 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.util.Callback;
 
-
-public class BaseManagerController {
+public class BaseCourierController {
 
     @FXML
     private ResourceBundle resources;
@@ -27,45 +25,39 @@ public class BaseManagerController {
     private URL location;
 
     @FXML
-    private TableColumn<DataManager, String> center_delivery;
-
-    @FXML
-    private TableColumn<DataManager, String> data;
+    private TableColumn<DataCourier, String> address_recipient;
 
     @FXML
     private Button exit;
 
     @FXML
-    private TableColumn<DataManager, Button> ok;
-
-
-    @FXML
-    private TableColumn<DataManager, String> parcels_id;
+    private TableColumn<DataCourier, String> name_recepient;
 
     @FXML
-    private TableView<DataManager> table;
+    private TableColumn<DataCourier, String> number_recepient;
 
     @FXML
-    private TableColumn<DataManager, String> typeDelivery;
+    private TableColumn<DataCourier, Button> ok;
 
     @FXML
-    private TableColumn<DataManager, String> weight;
-    private Button button;
+    private TableColumn<DataCourier, String> parcels_id;
+
+    @FXML
+    private TableView<DataCourier> table;
 
     @FXML
     void initialize() throws SQLException, ClassNotFoundException {
         table.setEditable(true);
 
         parcels_id.setCellValueFactory(new PropertyValueFactory<>("parcle_id"));
-        weight.setCellValueFactory(new PropertyValueFactory<>("weight"));
-        typeDelivery.setCellValueFactory(new PropertyValueFactory<>("typeDelivery"));
-        data.setCellValueFactory(new PropertyValueFactory<>("data"));
-        center_delivery.setCellValueFactory(new PropertyValueFactory<>("center_delivery"));
+        name_recepient.setCellValueFactory(new PropertyValueFactory<>("name_recipient"));
+        number_recepient.setCellValueFactory(new PropertyValueFactory<>("number_recipient"));
+        address_recipient.setCellValueFactory(new PropertyValueFactory<>("address"));
         ok.setCellValueFactory(new PropertyValueFactory<>("button"));
 
         // Установка фабрики значений для столбца "ok"
         ok.setCellFactory(column -> {
-            return new TableCell<DataManager, Button>() {
+            return new TableCell<DataCourier, Button>() {
                 @Override
                 protected void updateItem(Button item, boolean empty) {
                     super.updateItem(item, empty);
@@ -78,7 +70,7 @@ public class BaseManagerController {
             };
         });
 
-        dataManager();
+        dataCourier();
         exit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -87,12 +79,11 @@ public class BaseManagerController {
             }
         });
 
-
     }
 
-    private void dataManager() throws SQLException, ClassNotFoundException {
-        ArrayList<String> p = DatabaseConnection.getInstance().dataManager();
-        ObservableList<DataManager> datas = FXCollections.observableArrayList();
+    private void dataCourier() throws SQLException, ClassNotFoundException {
+        ArrayList<String> p = DatabaseConnection.getInstance().dataCourier();
+        ObservableList<DataCourier> datas = FXCollections.observableArrayList();
         for (int i = 0; i < p.size(); i++){
             String str = p.get(i);
             String[] s = str.split("\\*");
@@ -102,13 +93,13 @@ public class BaseManagerController {
                 public void handle(ActionEvent event) {
                     try {
                         parcelStatus(s[0]);
-                        dataManager();
+                        dataCourier();
                     } catch (SQLException | ClassNotFoundException e) {
                         e.printStackTrace();
                     }
                 }
             });
-            datas.add(new DataManager(s[0], s[1], s[2], s[3], s[4], button));
+            datas.add(new DataCourier(s[0], s[1], s[2], s[3], button));
         }
 
         table.setItems(datas);
@@ -118,6 +109,5 @@ public class BaseManagerController {
     private void parcelStatus(String parcelId) throws SQLException, ClassNotFoundException {
         DatabaseConnection.getInstance().parcleStatusCourier(parcelId);
     }
-
 
 }

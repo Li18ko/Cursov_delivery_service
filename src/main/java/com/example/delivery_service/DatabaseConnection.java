@@ -82,7 +82,26 @@ import static com.example.delivery_service.EntryController.getUserLogin;
                 PreparedStatement statement = connection.prepareStatement(query);
                 statement.setString(1, number);
                 ResultSet resultSet = statement.executeQuery();
-                return resultSet.next();
+                int count = 0;
+                if (resultSet.next())
+                    count++;
+
+                String query1 = "SELECT number FROM couriers WHERE number = ?";
+                PreparedStatement statement1 = connection.prepareStatement(query1);
+                statement1.setString(1, number);
+                ResultSet resultSet1 = statement1.executeQuery();
+                if (resultSet1.next())
+                    count++;
+
+                String query2 = "SELECT number FROM couriers WHERE number = ?";
+                PreparedStatement statement2 = connection.prepareStatement(query2);
+                statement2.setString(1, number);
+                ResultSet resultSet2 = statement2.executeQuery();
+                if (resultSet2.next())
+                    count++;
+
+                return count != 0;
+
             }
 
             public boolean checkNumberName(String number, String name) throws SQLException {
@@ -284,12 +303,89 @@ import static com.example.delivery_service.EntryController.getUserLogin;
                 return p;
             }
 
-            public void parcleStatus(String id) throws SQLException {
+            public void parcleStatusManager(String id) throws SQLException {
                 int id_ = Integer.parseInt(id);
-                String query6 = "UPDATE parcels SET status = 'Отправлена' WHERE parcle_id = ?";
+                String query6 = "UPDATE parcels SET status = 'Отправлена' WHERE id = ?";
                 PreparedStatement statement6 = connection.prepareStatement(query6);
                 statement6.setInt(1, id_);
                 statement6.executeUpdate();
+            }
+
+            public void registerCourier(Courier courier) throws SQLException {
+                String query = "INSERT INTO users(login, password) VALUES (?, ?)";
+                PreparedStatement statement = connection.prepareStatement(query);
+                statement.setString(1, courier.getLogin());
+                statement.setString(2, courier.getPassword());
+                statement.executeUpdate();
+
+                int idUser = getIdUser(courier.getLogin());
+
+                int idManagerUser = getIdUser(getUserLogin());
+
+                String query1 = "SELECT delivery_centers_id FROM managers WHERE users_id = ?";
+                PreparedStatement statement1 = connection.prepareStatement(query1);
+                statement1.setInt(1, idManagerUser);
+                ResultSet resultSet1 = statement1.executeQuery();
+                int delivery_centers_id = 0;
+                if (resultSet1.next()){
+                    delivery_centers_id = resultSet1.getInt("delivery_centers_id");
+                }
+
+                String query2 = "INSERT INTO couriers(delivery_centers_id, users_id, name, number) VALUES " +
+                        "(?, ?, ?, ?)";
+
+                PreparedStatement statement2 = connection.prepareStatement(query2);
+                statement2.setInt(1, delivery_centers_id);
+                statement2.setInt(2, idUser);
+                statement2.setString(3, courier.getName());
+                statement2.setString(4, courier.getNumber());
+                statement2.executeUpdate();
+
+
+                String query3 = "INSERT INTO users_roles(roles_id, users_id) VALUES " +
+                        "(?, ?)";
+
+                PreparedStatement statement3 = connection.prepareStatement(query3);
+                statement3.setInt(1, 3);
+                statement3.setInt(2, idUser);
+
+                statement3.executeUpdate();
+            }
+
+            public void parcleStatusCourier(String id) throws SQLException {
+                int id_ = Integer.parseInt(id);
+                String query6 = "UPDATE parcels SET status = 'У курьера' WHERE id = ?";
+                PreparedStatement statement6 = connection.prepareStatement(query6);
+                statement6.setInt(1, id_);
+                statement6.executeUpdate();
+            }
+
+            public ArrayList<String> dataCourier() throws SQLException {
+                int users_courier_id = getIdUser(getUserLogin());
+
+                String query10 = "SELECT couriers.id FROM couriers JOIN users on users.id = couriers.users_id WHERE users.id = ?";
+                PreparedStatement statement10 = connection.prepareStatement(query10);
+                statement10.setInt(1, users_courier_id);
+                ResultSet resultSet10 = statement10.executeQuery();
+                int courier_id = 0;
+                if (resultSet10.next()){
+                    courier_id = resultSet10.getInt(1);
+                }
+
+                String query = "SELECT parcels.id, clients.name, clients.number, clients.address" +
+                        " FROM parcels INNER JOIN recipients ON recipients.parcels_id = parcels.id" +
+                        " INNER JOIN clients ON recipients.clients_id = clients.id" +
+                        " WHERE parcels.couriers_id = ? and parcels.status = 'Отправлена'" +
+                        " ORDER BY parcels.data DESC;";
+                PreparedStatement statement = connection.prepareStatement(query);
+                statement.setInt(1, courier_id);
+                ResultSet result = statement.executeQuery();
+                ArrayList<String> p = new ArrayList<String>();
+                while (result.next()){
+                    p.add(result.getString(1) + "*" + result.getString(2) + "*" +
+                            result.getString(3) + "*" + result.getString(4));
+                }
+                return p;
             }
 
         }

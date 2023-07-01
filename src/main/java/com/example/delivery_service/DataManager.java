@@ -12,13 +12,13 @@ public class DataManager {
     private String center_delivery;
     private Button button;
 
-    public DataManager(String parcle_id, String weight, String typeDelivery, String data, String center_delivery) {
+    public DataManager(String parcle_id, String weight, String typeDelivery, String data, String center_delivery, Button button) {
         this.parcle_id = parcle_id;
         this.weight = weight;
         this.typeDelivery = typeDelivery;
         this.data = data;
         this.center_delivery = center_delivery;
-        this.button = new Button("Подтвердить");
+        this.button = button;
     }
 
     public String getParcle_id() {
@@ -65,7 +65,4 @@ public class DataManager {
         return button;
     }
 
-    public void setButton(Button button) {
-        this.button = button;
-    }
 }
