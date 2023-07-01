@@ -116,7 +116,7 @@ public class BaseManagerController {
     }
 
     private void parcelStatus(String parcelId) throws SQLException, ClassNotFoundException {
-        DatabaseConnection.getInstance().parcleStatusCourier(parcelId);
+        DatabaseConnection.getInstance().parcleStatusManager(parcelId);
     }
 
 

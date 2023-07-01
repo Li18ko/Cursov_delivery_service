@@ -4,20 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5deec214-f450-428d-adf7-40b9644e7c48" name="Changes" comment="заказы клиента, аккаунт менеджеров">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseAdminController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseCourierController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Courier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/DataCourier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/RegistrationCourierController.java" afterDir="false" />
+    <list default="true" id="5deec214-f450-428d-adf7-40b9644e7c48" name="Changes" comment="Подтверждение заказов с аккаунта менеджера + аккаунт курьера, подтверждение с аккаунта курьера">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/RegistrationManagerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/informCourier.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/informManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseAdminController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseManagerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/DataManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/DataManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Courier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Courier.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/DatabaseConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/EntryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/EntryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/RegistrationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/baseManager.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/baseManager.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Manager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/RegistrationCourierController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/RegistrationCourierController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/baseAdmin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/baseAdmin.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/registrationAdmin.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +173,21 @@
       <option name="project" value="LOCAL" />
       <updated>1688205506447</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Подтверждение заказов с аккаунта менеджера + аккаунт курьера, подтверждение с аккаунта курьера">
+      <created>1688240791312</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1688240791312</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Подтверждение заказов с аккаунта менеджера + аккаунт курьера, подтверждение с аккаунта курьера">
+      <created>1688240803374</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1688240803374</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -184,7 +199,8 @@
     <MESSAGE value="хэширование паролей и проверка номера телефона на уже существующие в бд" />
     <MESSAGE value="оформление посылки с аккаунта клиента" />
     <MESSAGE value="заказы клиента, аккаунт менеджеров" />
-    <option name="LAST_COMMIT_MESSAGE" value="заказы клиента, аккаунт менеджеров" />
+    <MESSAGE value="Подтверждение заказов с аккаунта менеджера + аккаунт курьера, подтверждение с аккаунта курьера" />
+    <option name="LAST_COMMIT_MESSAGE" value="Подтверждение заказов с аккаунта менеджера + аккаунт курьера, подтверждение с аккаунта курьера" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -196,55 +212,28 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/delivery_service/DatabaseConnection.java</url>
-          <line>358</line>
-          <option name="timeStamp" value="81" />
+          <line>446</line>
+          <option name="timeStamp" value="87" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/delivery_service/DatabaseConnection.java</url>
-          <line>357</line>
-          <option name="timeStamp" value="82" />
+          <line>434</line>
+          <option name="timeStamp" value="88" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/delivery_service/DatabaseConnection.java</url>
-          <line>365</line>
-          <option name="timeStamp" value="84" />
+          <line>428</line>
+          <option name="timeStamp" value="89" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/delivery_service/DatabaseConnection.java</url>
-          <line>367</line>
-          <option name="timeStamp" value="85" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/delivery_service/RegistrationManagerController.java</url>
+          <line>106</line>
+          <option name="timeStamp" value="94" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/delivery_service/DatabaseConnection.java</url>
-          <line>369</line>
-          <option name="timeStamp" value="86" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseController.java</url>
-          <line>136</line>
-          <properties class="com.example.delivery_service.BaseController">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="43" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/delivery_service/DatabaseConnection.java</url>
-          <line>354</line>
-          <properties class="com.example.delivery_service.DatabaseConnection" method="parcleStatusCourier">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="80" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/delivery_service/DatabaseConnection.java</url>
-          <line>362</line>
-          <properties class="com.example.delivery_service.DatabaseConnection" method="dataCourier">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="83" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/delivery_service/RegistrationManagerController.java</url>
+          <line>59</line>
+          <option name="timeStamp" value="95" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

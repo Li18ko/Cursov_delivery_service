@@ -4,13 +4,15 @@ public class Courier {
     private String name;
     private String number;
     private String login;
+    private String center_delivery;
     private String password;
 
-    public Courier(String name, String number, String login, String password) {
+    public Courier(String name, String number, String center_delivery, String login, String hashedPassword) {
         this.name = name;
         this.number = number;
         this.login = login;
-        this.password = password;
+        this.password = hashedPassword;
+        this.center_delivery = center_delivery;
     }
 
     public String getName() {
@@ -35,6 +37,14 @@ public class Courier {
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    public String getCenter_delivery() {
+        return center_delivery;
+    }
+
+    public void setCenter_delivery(String center_delivery) {
+        this.center_delivery = center_delivery;
     }
 
     public String getPassword() {

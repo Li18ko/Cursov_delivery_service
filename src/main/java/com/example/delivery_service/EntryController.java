@@ -18,12 +18,6 @@ import javafx.scene.control.TextField;
 public class EntryController {
 
     @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
     private Button back;
 
     @FXML

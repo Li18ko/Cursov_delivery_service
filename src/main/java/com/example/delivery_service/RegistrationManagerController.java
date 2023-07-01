@@ -11,7 +11,7 @@ import javafx.scene.control.TextField;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
-public class RegistrationCourierController {
+public class RegistrationManagerController {
     @FXML
     private Label advertisement;
 
@@ -26,9 +26,6 @@ public class RegistrationCourierController {
 
     @FXML
     private TextField name;
-
-    @FXML
-    private TextField number;
 
     @FXML
     private PasswordField passwordRegistration;
@@ -46,9 +43,6 @@ public class RegistrationCourierController {
     private Label warningName;
 
     @FXML
-    private Label warningNumber;
-
-    @FXML
     private Label warningPassword;
 
     @FXML
@@ -64,9 +58,7 @@ public class RegistrationCourierController {
             @Override
             public void handle(ActionEvent event) {
                 try {
-                    if ((name.getText() == "" || name.getText().length() > 30) || (number.getText() == "" || number.getText().length() != 12 ||
-                            (number.getText().charAt(0) != '+' && number.getText().charAt(1) != '7') ||
-                            DatabaseConnection.getInstance().checkNumber(number.getText())) || (loginRegistration.getText() == ""
+                    if ((name.getText() == "" || name.getText().length() > 30) || (loginRegistration.getText() == ""
                             || loginRegistration.getText().length() > 20 || DatabaseConnection.getInstance().isLoginExists(loginRegistration.getText()))
                             || (passwordRegistration.getText() == "" || passwordRegistration.getText().length() > 30
                             || passwordRegistration.getText().length() < 6) || center_delivery.getText() == "" || center_delivery.getText().length() > 50 ||
@@ -76,13 +68,6 @@ public class RegistrationCourierController {
                         if (name.getText() == "" || name.getText().length() > 30)
                             name.setText("Имя некорректное");
 
-                        if (number.getText() == "" || number.getText().length() != 12 ||
-                                (number.getText().charAt(0) != '+' && number.getText().charAt(1) != '7') ||
-                                DatabaseConnection.getInstance().checkNumber(number.getText())){
-                            if (DatabaseConnection.getInstance().checkNumber(number.getText())) {
-                                number.setText("Номер занят");
-                            } else number.setText("Номер некорректный");
-                        }
 
                         if (center_delivery.getText() == "" || center_delivery.getText().length() > 50 ||
                                 !DatabaseConnection.getInstance().checkDelivery_center(center_delivery.getText())){
@@ -101,7 +86,7 @@ public class RegistrationCourierController {
                     }
 
                     else {
-                        registerCourier();
+                        registerManager();
                         Transition.changeScene(event, "baseAdmin.fxml", "ADMIN");
 
                     }
@@ -117,18 +102,17 @@ public class RegistrationCourierController {
         });
     }
 
-    private void registerCourier() throws SQLException, ClassNotFoundException, NoSuchAlgorithmException {
+    private void registerManager() throws SQLException, ClassNotFoundException, NoSuchAlgorithmException {
         String nameText = name.getText();
-        String numberText = number.getText();
         String center_deliveryText = center_delivery.getText();
         String loginRegistrationText = loginRegistration.getText();
         String passwordRegistrationText = passwordRegistration.getText();
 
         String hashedPassword = PasswordHasher.hashPassword(passwordRegistrationText);
 
-        Courier courier = new Courier(nameText, numberText, center_deliveryText, loginRegistrationText, hashedPassword);
+        Manager manager = new Manager(center_deliveryText, nameText, loginRegistrationText, hashedPassword);
 
-        DatabaseConnection.getInstance().registerCourier(courier);
+        DatabaseConnection.getInstance().registerManager(manager);
 
     }
 

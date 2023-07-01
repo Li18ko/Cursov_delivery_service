@@ -22,10 +22,10 @@
                      <children>
                         <TableView fx:id="manager" prefHeight="290.0" prefWidth="686.0">
                           <columns>
-                            <TableColumn fx:id="name_manager" prefWidth="117.60000163316727" text="Имя" />
-                            <TableColumn fx:id="number_manager" prefWidth="131.19995880126953" text="Номер" />
-                              <TableColumn fx:id="login_manager" prefWidth="157.6000518798828" text="Логин" />
-                              <TableColumn fx:id="center_delivery_manager" prefWidth="265.6000671386719" text="Центр доставки" />
+                            <TableColumn fx:id="name_manager" prefWidth="118.40001994371414" text="Имя" />
+                              <TableColumn fx:id="login_manager" prefWidth="134.39997100830078" text="Логин" />
+                              <TableColumn fx:id="center_delivery_manager" prefWidth="304.7999725341797" text="Центр доставки" />
+                              <TableColumn fx:id="ok_manager" prefWidth="105.5999755859375" text="Удалить" />
                           </columns>
                         </TableView>
                      </children>
@@ -38,10 +38,11 @@
                      <children>
                         <TableView fx:id="courier" prefHeight="290.0" prefWidth="686.0">
                           <columns>
-                            <TableColumn fx:id="name_courier" prefWidth="121.6000092625618" text="Имя" />
-                            <TableColumn fx:id="number_manager" prefWidth="127.19998168945312" text="Номер" />
-                              <TableColumn fx:id="login_manager" prefWidth="158.3999786376953" text="Логин" />
-                              <TableColumn fx:id="center_delivery_manager" prefWidth="262.4000549316406" text="Центр доставки" />
+                            <TableColumn fx:id="name_courier" prefWidth="85.60000163316727" text="Имя" />
+                              <TableColumn fx:id="number_courier" prefWidth="130.39997100830078" text="Номер" />
+                              <TableColumn fx:id="login_courier" prefWidth="110.40003967285156" text="Логин" />
+                              <TableColumn fx:id="center_delivery_courier" prefWidth="239.19998168945312" text="Центр доставки" />
+                              <TableColumn fx:id="ok_courier" prefWidth="107.20001220703125" text="Удалить" />
                           </columns>
                         </TableView>
                      </children>

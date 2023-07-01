@@ -95,43 +95,43 @@ public class BaseController {
             }
         });
 
+    }
+
+    private void makeOrder() throws SQLException, ClassNotFoundException {
+        String typeDeliveryText = (String) typeDelivery.getValue();
+
+        LocalDateTime timestamp = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String data = timestamp.format(formatter);
+
+        DecimalFormat df = new DecimalFormat("0.00");
+        String weightT = df.format(Double.valueOf(weight.getText().replace(',','.')));
+        String weightText = weightT.replace(',', '.');
+
+        String recipientNameText = recipientName.getText();
+        String recipientNumberText = recipientNumber.getText();
+
+        Parcle parcle = new Parcle(typeDeliveryText, weightText, data, recipientNameText, recipientNumberText);
+        DatabaseConnection.getInstance().makeOrder(parcle);
+
+    }
+
+    private void parcleStatus() throws SQLException, ClassNotFoundException {
+        ArrayList<String> p = DatabaseConnection.getInstance().parcleStatus();
+        ObservableList<OrderSender> parcels = FXCollections.observableArrayList();
+        for (int i = 0; i < p.size(); i++){
+            String str = p.get(i);
+            String[] s = str.split("\\*");
+            parcels.add(new OrderSender(s[0], s[1], s[2], s[3], s[4]));
         }
 
-        private void makeOrder() throws SQLException, ClassNotFoundException {
-            String typeDeliveryText = (String) typeDelivery.getValue();
+        parcels_id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        parcels_dta.setCellValueFactory(new PropertyValueFactory<>("data"));
+        name_recepient.setCellValueFactory(new PropertyValueFactory<>("name"));
+        number_resepient.setCellValueFactory(new PropertyValueFactory<>("number"));
+        res.setCellValueFactory(new PropertyValueFactory<>("status"));
 
-            LocalDateTime timestamp = LocalDateTime.now();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-            String data = timestamp.format(formatter);
-
-            DecimalFormat df = new DecimalFormat("0.00");
-            String weightT = df.format(Double.valueOf(weight.getText().replace(',','.')));
-            String weightText = weightT.replace(',', '.');
-
-            String recipientNameText = recipientName.getText();
-            String recipientNumberText = recipientNumber.getText();
-
-            Parcle parcle = new Parcle(typeDeliveryText, weightText, data, recipientNameText, recipientNumberText);
-            DatabaseConnection.getInstance().makeOrder(parcle);
-
-        }
-
-        private void parcleStatus() throws SQLException, ClassNotFoundException {
-            ArrayList<String> p = DatabaseConnection.getInstance().parcleStatus();
-            ObservableList<OrderSender> parcels = FXCollections.observableArrayList();
-            for (int i = 0; i < p.size(); i++){
-                String str = p.get(i);
-                String[] s = str.split("\\*");
-                parcels.add(new OrderSender(s[0], s[1], s[2], s[3], s[4]));
-            }
-
-            parcels_id.setCellValueFactory(new PropertyValueFactory<>("id"));
-            parcels_dta.setCellValueFactory(new PropertyValueFactory<>("data"));
-            name_recepient.setCellValueFactory(new PropertyValueFactory<>("name"));
-            number_resepient.setCellValueFactory(new PropertyValueFactory<>("number"));
-            res.setCellValueFactory(new PropertyValueFactory<>("status"));
-
-            table.setItems(parcels);
-        }
+        table.setItems(parcels);
+    }
 
 }
