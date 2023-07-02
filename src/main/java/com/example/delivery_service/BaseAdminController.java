@@ -54,6 +54,9 @@ public class BaseAdminController {
     private TableColumn<informAdmin, Button> ok_manager;
 
     @FXML
+    private Button nearest_dc;
+
+    @FXML
     private Button registrCourier;
 
     @FXML
@@ -126,16 +129,26 @@ public class BaseAdminController {
         exit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Transition.changeScene(event, "startSheet.fxml", "Delivery Service");
+                Transition.changeScene(event, "nearestDcAdmin.fxml", "Delivery Service");
+
+            }
+        });
+
+        nearest_dc.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Transition.changeScene(event, "startSheet.fxml", "ADMIN");
 
             }
         });
 
 
+
+
     }
 
     private void dataADMIN() throws SQLException, ClassNotFoundException {
-        ArrayList<String> p = DatabaseConnection.getInstance().deleteCourier();
+        ArrayList<String> p = DatabaseConnection.getInstance().adminCourier();
         ObservableList<informAdmin> datas = FXCollections.observableArrayList();
         for (int i = 0; i < p.size(); i++){
             String str = p.get(i);
@@ -145,7 +158,7 @@ public class BaseAdminController {
                 @Override
                 public void handle(ActionEvent event) {
                     try {
-                        deleteCourier();
+                        deleteCourier(s[2]);
                         dataADMIN();
                     } catch (SQLException | ClassNotFoundException e) {
                         e.printStackTrace();
@@ -156,7 +169,7 @@ public class BaseAdminController {
 
         }
 
-        ArrayList<String> q = DatabaseConnection.getInstance().deleteManager();
+        ArrayList<String> q = DatabaseConnection.getInstance().adminManager();
         ObservableList<informAdmin> data = FXCollections.observableArrayList();
         for (int i = 0; i < q.size(); i++){
             String str = q.get(i);
@@ -166,7 +179,7 @@ public class BaseAdminController {
                 @Override
                 public void handle(ActionEvent event) {
                     try {
-                        deleteManager();
+                        deleteManager(s[1]);
                         dataADMIN();
                     } catch (SQLException | ClassNotFoundException e) {
                         e.printStackTrace();
@@ -182,12 +195,12 @@ public class BaseAdminController {
         courier.refresh();
     }
 
-    private void deleteCourier() throws SQLException, ClassNotFoundException {
-        DatabaseConnection.getInstance().deleteCourier();
+    private void deleteCourier(String login) throws SQLException, ClassNotFoundException {
+        DatabaseConnection.getInstance().deleteCourier(login);
     }
 
-    private void deleteManager() throws SQLException, ClassNotFoundException {
-        DatabaseConnection.getInstance().deleteManager();
+    private void deleteManager(String login) throws SQLException, ClassNotFoundException {
+        DatabaseConnection.getInstance().deleteManager(login);
     }
 
 

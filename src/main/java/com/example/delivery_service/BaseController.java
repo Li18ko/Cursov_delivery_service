@@ -43,13 +43,13 @@ public class BaseController {
     private TableColumn<Parcle, Button> ok;
 
     @FXML
-    private TableColumn<Parcle, String> parcels_dta;
+    private TableColumn<Parcle, String> parcels_data_send;
 
     @FXML
     private TableColumn<Parcle, String> parcels_dta_rec;
 
     @FXML
-    private TableColumn<Parcle, String> parcels_id;
+    private TableColumn<Parcle, String> parcels_id_send;
 
     @FXML
     private TableColumn<Parcle, String> parcels_id_rec;
@@ -144,30 +144,30 @@ public class BaseController {
     }
 
     private void parcleStatus() throws SQLException, ClassNotFoundException {
+        parcels_id_send.setCellValueFactory(new PropertyValueFactory<>("id"));
+        parcels_data_send.setCellValueFactory(new PropertyValueFactory<>("data"));
+        name_recepient.setCellValueFactory(new PropertyValueFactory<>("recipientName"));
+        number_resepient.setCellValueFactory(new PropertyValueFactory<>("recipientNumber"));
+        res.setCellValueFactory(new PropertyValueFactory<>("status"));
+
         ArrayList<String> p = DatabaseConnection.getInstance().parcleStatus();
         ObservableList<Parcle> parcels = FXCollections.observableArrayList();
         for (int i = 0; i < p.size(); i++){
             String str = p.get(i);
             String[] s = str.split("\\*");
-            parcels.add(new Parcle(s[0], s[1], s[2], s[3], s[4]));
+            parcels.add(new Parcle(Integer.parseInt(s[0]), s[1], s[2], s[3], s[4]));
         }
 
-        parcels_id.setCellValueFactory(new PropertyValueFactory<>("id"));
-        parcels_dta.setCellValueFactory(new PropertyValueFactory<>("data"));
-        name_recepient.setCellValueFactory(new PropertyValueFactory<>("name"));
-        number_resepient.setCellValueFactory(new PropertyValueFactory<>("number"));
-        res.setCellValueFactory(new PropertyValueFactory<>("status"));
 
         sender.setItems(parcels);
     }
 
     private void recepient_parcle() throws SQLException, ClassNotFoundException {
         res.setEditable(true);
-
-        parcels_id_rec.setCellValueFactory(new PropertyValueFactory<>("rec_id"));
-        parcels_dta_rec.setCellValueFactory(new PropertyValueFactory<>("rec_data"));
-        name_sender.setCellValueFactory(new PropertyValueFactory<>("name"));
-        number_sender.setCellValueFactory(new PropertyValueFactory<>("number"));
+        parcels_id_rec.setCellValueFactory(new PropertyValueFactory<>("id"));
+        parcels_dta_rec.setCellValueFactory(new PropertyValueFactory<>("data"));
+        name_sender.setCellValueFactory(new PropertyValueFactory<>("nameSenders"));
+        number_sender.setCellValueFactory(new PropertyValueFactory<>("numberSenders"));
         ok.setCellValueFactory(new PropertyValueFactory<>("button"));
 
         // Установка фабрики значений для столбца "ok"

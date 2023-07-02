@@ -388,7 +388,7 @@ public class DatabaseConnection{
             return p;
         }
 
-        public ArrayList<String> deleteCourier() throws SQLException {
+        public ArrayList<String> adminCourier() throws SQLException {
             String query = "SELECT couriers.name, couriers.number, users.login, delivery_centers.name" +
                     " FROM couriers INNER JOIN users ON couriers.users_id = users.id" +
                     " INNER JOIN delivery_centers ON delivery_centers.id = couriers.delivery_centers_id" +
@@ -403,7 +403,7 @@ public class DatabaseConnection{
             return p;
         }
 
-        public ArrayList<String> deleteManager() throws SQLException {
+        public ArrayList<String> adminManager() throws SQLException {
             String query = "SELECT managers.name, users.login, delivery_centers.name" +
                     " FROM managers INNER JOIN users ON managers.users_id = users.id" +
                     " INNER JOIN delivery_centers ON delivery_centers.id = managers.delivery_centers_id" +
@@ -614,16 +614,102 @@ public class DatabaseConnection{
             }
         }
 
-    public ArrayList<String> name_delivery_center() throws SQLException {
-        String query10 = "SELECT name FROM delivery_centers";
-        PreparedStatement statement10 = connection.prepareStatement(query10);
-        ResultSet resultSet10 = statement10.executeQuery();
-        ArrayList<String> p = new ArrayList<String>();
-        while (resultSet10.next()){
-            p.add(resultSet10.getString(1));
+        public ArrayList<String> name_delivery_center() throws SQLException {
+            String query10 = "SELECT name FROM delivery_centers";
+            PreparedStatement statement10 = connection.prepareStatement(query10);
+            ResultSet resultSet10 = statement10.executeQuery();
+            ArrayList<String> p = new ArrayList<String>();
+            while (resultSet10.next()){
+                p.add(resultSet10.getString(1));
+            }
+            return p;
         }
-        return p;
-    }
+
+
+        public void deleteCourier(String login) throws SQLException {
+            int id_user = getIdUser(login);
+
+            String query10 = "SELECT couriers.id, couriers.delivery_centers_id FROM couriers JOIN users on " +
+                    "couriers.users_id = users.id WHERE users.id = ?";
+            PreparedStatement statement10 = connection.prepareStatement(query10);
+            statement10.setInt(1, id_user);
+            ResultSet resultSet10 = statement10.executeQuery();
+            int courier_id = 0;
+            int delivery_centers_id = 0;
+            if (resultSet10.next()){
+                courier_id = resultSet10.getInt(1);
+                delivery_centers_id = resultSet10.getInt(2);}
+
+            String query6 = "UPDATE parcels SET couriers_id = NULL WHERE status = 'Получена' and couriers_id = ?";
+            PreparedStatement statement6 = connection.prepareStatement(query6);
+            statement6.setInt(1, courier_id);
+            statement6.executeUpdate();
+
+
+            String query2 = "SELECT id FROM couriers WHERE delivery_centers_id = ? and couriers.id not in (?) " +
+                    "ORDER BY rand() LIMIT 1";
+            PreparedStatement statement2 = connection.prepareStatement(query2);
+            statement2.setInt(1, delivery_centers_id);
+            statement2.setInt(2, courier_id);
+            ResultSet resultSet2 = statement2.executeQuery();
+            int couries_id_new = 0;
+            if (resultSet2.next()){
+                couries_id_new = resultSet2.getInt("id");
+            }
+
+            String query3 = "UPDATE parcels SET couriers_id = ? WHERE status not in ('Получена') and couriers_id = ?";
+            PreparedStatement statement3 = connection.prepareStatement(query3);
+            statement3.setInt(1, couries_id_new);
+            statement3.setInt(2, courier_id);
+            statement3.executeUpdate();
+
+
+            String query4 = "DELETE FROM couriers WHERE id = ?";
+            PreparedStatement statement4 = connection.prepareStatement(query4);
+            statement4.setInt(1, courier_id);
+            statement4.executeUpdate();
+
+            String query7 = "DELETE FROM users_roles WHERE users_id = ?";
+            PreparedStatement statement7 = connection.prepareStatement(query7);
+            statement7.setInt(1, id_user);
+            statement7.executeUpdate();
+
+            String query5 = "DELETE FROM users WHERE id = ?";
+            PreparedStatement statement5 = connection.prepareStatement(query5);
+            statement5.setInt(1, id_user);
+            statement5.executeUpdate();
+
+        }
+
+        public void deleteManager(String login) throws SQLException {
+            int id_user = getIdUser(login);
+
+            String query10 = "SELECT managers.id FROM managers JOIN users on " +
+                    "managers.users_id = users.id WHERE users.id = ?";
+            PreparedStatement statement10 = connection.prepareStatement(query10);
+            statement10.setInt(1, id_user);
+            ResultSet resultSet10 = statement10.executeQuery();
+            int managers_id = 0;
+            if (resultSet10.next())
+                managers_id = resultSet10.getInt(1);
+
+            String query4 = "DELETE FROM managers WHERE id = ?";
+            PreparedStatement statement4 = connection.prepareStatement(query4);
+            statement4.setInt(1, managers_id);
+            statement4.executeUpdate();
+
+            String query7 = "DELETE FROM users_roles WHERE users_id = ?";
+            PreparedStatement statement7 = connection.prepareStatement(query7);
+            statement7.setInt(1, id_user);
+            statement7.executeUpdate();
+
+            String query5 = "DELETE FROM users WHERE id = ?";
+            PreparedStatement statement5 = connection.prepareStatement(query5);
+            statement5.setInt(1, id_user);
+            statement5.executeUpdate();
+
+
+        }
 
 
 

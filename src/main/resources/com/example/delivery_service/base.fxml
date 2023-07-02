@@ -40,8 +40,8 @@
                      <children>
                         <TableView fx:id="sender" prefHeight="148.0" prefWidth="570.0">
                           <columns>
-                            <TableColumn fx:id="parcels_id" prefWidth="75.0" text="id посылки" />
-                            <TableColumn fx:id="parcels_dta" prefWidth="147.20001220703125" text="Дата оформления" />
+                            <TableColumn fx:id="parcels_id_send" prefWidth="75.0" text="id посылки" />
+                            <TableColumn fx:id="parcels_data_send" prefWidth="147.20001220703125" text="Дата оформления" />
                               <TableColumn fx:id="name_recepient" prefWidth="106.39997863769531" text="Имя получателя" />
                               <TableColumn fx:id="number_resepient" prefWidth="120.0" text="Номер получателя" />
                               <TableColumn fx:id="res" prefWidth="119.19992065429688" sortType="DESCENDING" text="Статус" />
