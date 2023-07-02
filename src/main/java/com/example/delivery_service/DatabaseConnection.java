@@ -464,4 +464,42 @@ public class DatabaseConnection{
             statement3.executeUpdate();
         }
 
+    public ArrayList<String> recepient_parcle() throws SQLException {
+        int users_recepient_id = getIdUser(getUserLogin());
+
+        String query10 = "SELECT clients.id FROM clients JOIN users on users.id = clients.users_id WHERE users.id = ?";
+        PreparedStatement statement10 = connection.prepareStatement(query10);
+        statement10.setInt(1, users_recepient_id);
+        ResultSet resultSet10 = statement10.executeQuery();
+        int recepient_id = 0;
+        if (resultSet10.next()){
+            recepient_id = resultSet10.getInt(1);
         }
+
+        String query = "SELECT parcels.id, parcels.data, clients.name, clients.number " +
+                "FROM parcels " +
+                "JOIN recipients ON recipients.parcels_id = parcels.id " +
+                "JOIN senders ON senders.parcels_id = parcels.id " +
+                "JOIN clients ON clients.id = senders.clients_id " +
+                "WHERE recipients.clients_id = ? and parcels.status = 'У курьера'" +
+                "ORDER BY parcels.data DESC;";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1, recepient_id);
+        ResultSet result = statement.executeQuery();
+        ArrayList<String> p = new ArrayList<String>();
+        while (result.next()){
+            p.add(result.getString(1) + "*" + result.getString(2) + "*" +
+                    result.getString(3) + "*" + result.getString(4));
+        }
+        return p;
+    }
+
+    public void recipientStatusParcle(String id) throws SQLException {
+        int id_ = Integer.parseInt(id);
+        String query6 = "UPDATE parcels SET status = 'Получена' WHERE id = ?";
+        PreparedStatement statement6 = connection.prepareStatement(query6);
+        statement6.setInt(1, id_);
+        statement6.executeUpdate();
+    }
+
+}

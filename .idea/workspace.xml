@@ -4,21 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5deec214-f450-428d-adf7-40b9644e7c48" name="Changes" comment="Подтверждение заказов с аккаунта менеджера + аккаунт курьера, подтверждение с аккаунта курьера">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/RegistrationManagerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/informCourier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/informManager.java" afterDir="false" />
+    <list default="true" id="5deec214-f450-428d-adf7-40b9644e7c48" name="Changes" comment="Аккаунт Админа, регистрация курьров и менеджеров с него, вывод в таблицы информации о курьерах и менеджерах">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/OrderRecipient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseAdminController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseManagerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Courier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Courier.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/DatabaseConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/EntryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/EntryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/RegistrationCourierController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/RegistrationCourierController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/baseAdmin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/baseAdmin.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/registrationAdmin.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/base.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/base.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,7 +178,14 @@
       <option name="project" value="LOCAL" />
       <updated>1688240803374</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Аккаунт Админа, регистрация курьров и менеджеров с него, вывод в таблицы информации о курьерах и менеджерах">
+      <created>1688254957125</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1688254957125</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -200,7 +198,8 @@
     <MESSAGE value="оформление посылки с аккаунта клиента" />
     <MESSAGE value="заказы клиента, аккаунт менеджеров" />
     <MESSAGE value="Подтверждение заказов с аккаунта менеджера + аккаунт курьера, подтверждение с аккаунта курьера" />
-    <option name="LAST_COMMIT_MESSAGE" value="Подтверждение заказов с аккаунта менеджера + аккаунт курьера, подтверждение с аккаунта курьера" />
+    <MESSAGE value="Аккаунт Админа, регистрация курьров и менеджеров с него, вывод в таблицы информации о курьерах и менеджерах" />
+    <option name="LAST_COMMIT_MESSAGE" value="Аккаунт Админа, регистрация курьров и менеджеров с него, вывод в таблицы информации о курьерах и менеджерах" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

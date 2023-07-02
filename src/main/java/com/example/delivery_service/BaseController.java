@@ -15,8 +15,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class BaseController {
-
-
     @FXML
     private Button arrange;
 
@@ -27,16 +25,31 @@ public class BaseController {
     private Label id;
 
     @FXML
-    private TableColumn<OrderSender, String> name_recepient;
+    private TableColumn<OrderRecipient, String> name_recepient;
 
     @FXML
-    private TableColumn<OrderSender, String> number_resepient;
+    private TableColumn<OrderSender, String> name_sender;
+
+    @FXML
+    private TableColumn<OrderRecipient, String> number_resepient;
+
+    @FXML
+    private TableColumn<OrderSender, String> number_sender;
+
+    @FXML
+    private TableColumn<OrderRecipient, Button> ok;
 
     @FXML
     private TableColumn<OrderSender, String> parcels_dta;
 
     @FXML
+    private TableColumn<OrderRecipient, String> parcels_dta_rec;
+
+    @FXML
     private TableColumn<OrderSender, String> parcels_id;
+
+    @FXML
+    private TableColumn<OrderRecipient, String> parcels_id_rec;
 
     @FXML
     private TextField recipientName;
@@ -48,7 +61,10 @@ public class BaseController {
     private TableColumn<OrderSender, String> res;
 
     @FXML
-    private TableView table;
+    private TableView<OrderRecipient> recep;
+
+    @FXML
+    private TableView<OrderSender> sender;
 
     @FXML
     private ComboBox<String> typeDelivery;
@@ -56,9 +72,10 @@ public class BaseController {
     @FXML
     private TextField weight;
 
-
     @FXML
     void initialize() throws SQLException, ClassNotFoundException {
+
+        recepient_parcle();
         parcleStatus();
         ObservableList<String> list = FXCollections.observableArrayList("usual", "express");
         typeDelivery.setItems(list);
@@ -131,7 +148,60 @@ public class BaseController {
         number_resepient.setCellValueFactory(new PropertyValueFactory<>("number"));
         res.setCellValueFactory(new PropertyValueFactory<>("status"));
 
-        table.setItems(parcels);
+        sender.setItems(parcels);
+    }
+
+    private void recepient_parcle() throws SQLException, ClassNotFoundException {
+        res.setEditable(true);
+
+        parcels_id_rec.setCellValueFactory(new PropertyValueFactory<>("rec_id"));
+        parcels_dta_rec.setCellValueFactory(new PropertyValueFactory<>("rec_data"));
+        name_sender.setCellValueFactory(new PropertyValueFactory<>("name"));
+        number_sender.setCellValueFactory(new PropertyValueFactory<>("number"));
+        ok.setCellValueFactory(new PropertyValueFactory<>("button"));
+
+        // Установка фабрики значений для столбца "ok"
+        ok.setCellFactory(column -> {
+            return new TableCell<OrderRecipient, Button>() {
+                @Override
+                protected void updateItem(Button item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (item == null || empty) {
+                        setGraphic(null);
+                    } else {
+                        setGraphic(item);
+                    }
+                }
+            };
+        });
+
+        ArrayList<String> p = DatabaseConnection.getInstance().recepient_parcle();
+        ObservableList<OrderRecipient> data__ = FXCollections.observableArrayList();
+        for (int i = 0; i < p.size(); i++){
+            String str = p.get(i);
+            String[] s = str.split("\\*");
+            Button button = new Button("Подтвердить");
+            button.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    try {
+                        parcelStatus(s[0]);
+                        recepient_parcle();
+                    } catch (SQLException | ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+                data__.add(new OrderRecipient(s[0], s[1], s[2], s[3], button));
+            }
+        recep.setItems(data__);
+        recep.refresh();
+
+    }
+
+
+    private void parcelStatus(String parcelId) throws SQLException, ClassNotFoundException {
+        DatabaseConnection.getInstance().recipientStatusParcle(parcelId);
     }
 
 }
