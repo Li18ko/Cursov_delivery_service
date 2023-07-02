@@ -1,15 +1,15 @@
 package com.example.delivery_service;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class RegistrationManagerController {
     @FXML
@@ -18,8 +18,9 @@ public class RegistrationManagerController {
     @FXML
     private Button backRegistration;
 
+
     @FXML
-    private TextField center_delivery;
+    private ComboBox<String> center_delivery;
 
     @FXML
     private TextField loginRegistration;
@@ -47,6 +48,14 @@ public class RegistrationManagerController {
 
     @FXML
     void initialize() throws SQLException, ClassNotFoundException {
+        ArrayList<String> p = DatabaseConnection.getInstance().name_delivery_center();
+        ObservableList<String> items = FXCollections.observableArrayList();
+        for (int i = 0; i < p.size(); i++){
+            String str = p.get(i);
+            items.add(str);
+        }
+        center_delivery.setItems(items);
+
         backRegistration.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -61,18 +70,14 @@ public class RegistrationManagerController {
                     if ((name.getText() == "" || name.getText().length() > 30) || (loginRegistration.getText() == ""
                             || loginRegistration.getText().length() > 20 || DatabaseConnection.getInstance().isLoginExists(loginRegistration.getText()))
                             || (passwordRegistration.getText() == "" || passwordRegistration.getText().length() > 30
-                            || passwordRegistration.getText().length() < 6) || center_delivery.getText() == "" || center_delivery.getText().length() > 50 ||
-                            !DatabaseConnection.getInstance().checkDelivery_center(center_delivery.getText())){
+                            || passwordRegistration.getText().length() < 6) || center_delivery.getSelectionModel().isEmpty()){
 
+
+                        if (center_delivery.getSelectionModel().isEmpty())
+                            warningCenter_Delivery.setText(" Центр доставки не выбран");
 
                         if (name.getText() == "" || name.getText().length() > 30)
                             name.setText("Имя некорректное");
-
-
-                        if (center_delivery.getText() == "" || center_delivery.getText().length() > 50 ||
-                                !DatabaseConnection.getInstance().checkDelivery_center(center_delivery.getText())){
-                            center_delivery.setText("Такого центра доставки не существует");
-                        }
 
                         if (loginRegistration.getText() == "" || loginRegistration.getText().length() > 20 || DatabaseConnection.getInstance().isLoginExists(loginRegistration.getText())) {
                             if (DatabaseConnection.getInstance().isLoginExists(loginRegistration.getText())) {
@@ -104,7 +109,7 @@ public class RegistrationManagerController {
 
     private void registerManager() throws SQLException, ClassNotFoundException, NoSuchAlgorithmException {
         String nameText = name.getText();
-        String center_deliveryText = center_delivery.getText();
+        String center_deliveryText = center_delivery.getValue();
         String loginRegistrationText = loginRegistration.getText();
         String passwordRegistrationText = passwordRegistration.getText();
 

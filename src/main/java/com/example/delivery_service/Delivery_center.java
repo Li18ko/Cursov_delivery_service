@@ -11,6 +11,10 @@ public class Delivery_center {
         this.address = address;
     }
 
+    public Delivery_center(String name) {
+        this.name = name;
+    }
+
     public int getId() {
         return id;
     }

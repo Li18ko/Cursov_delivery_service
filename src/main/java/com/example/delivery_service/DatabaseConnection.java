@@ -90,6 +90,7 @@ public class DatabaseConnection{
             PreparedStatement statement1 = connection.prepareStatement(query1);
             statement1.setString(1, number);
             ResultSet resultSet1 = statement1.executeQuery();
+
             if (resultSet1.next())
                 count++;
 
@@ -97,9 +98,9 @@ public class DatabaseConnection{
             PreparedStatement statement2 = connection.prepareStatement(query2);
             statement2.setString(1, number);
             ResultSet resultSet2 = statement2.executeQuery();
+
             if (resultSet2.next())
                 count++;
-
             return count != 0;
 
         }
@@ -464,42 +465,166 @@ public class DatabaseConnection{
             statement3.executeUpdate();
         }
 
-    public ArrayList<String> recepient_parcle() throws SQLException {
-        int users_recepient_id = getIdUser(getUserLogin());
+        public ArrayList<String> recepient_parcle() throws SQLException {
+            int users_recepient_id = getIdUser(getUserLogin());
 
-        String query10 = "SELECT clients.id FROM clients JOIN users on users.id = clients.users_id WHERE users.id = ?";
-        PreparedStatement statement10 = connection.prepareStatement(query10);
-        statement10.setInt(1, users_recepient_id);
-        ResultSet resultSet10 = statement10.executeQuery();
-        int recepient_id = 0;
-        if (resultSet10.next()){
-            recepient_id = resultSet10.getInt(1);
+            String query10 = "SELECT clients.id FROM clients JOIN users on users.id = clients.users_id WHERE users.id = ?";
+            PreparedStatement statement10 = connection.prepareStatement(query10);
+            statement10.setInt(1, users_recepient_id);
+            ResultSet resultSet10 = statement10.executeQuery();
+            int recepient_id = 0;
+            if (resultSet10.next()){
+                recepient_id = resultSet10.getInt(1);
+            }
+
+            String query = "SELECT parcels.id, parcels.data, clients.name, clients.number " +
+                    "FROM parcels " +
+                    "JOIN recipients ON recipients.parcels_id = parcels.id " +
+                    "JOIN senders ON senders.parcels_id = parcels.id " +
+                    "JOIN clients ON clients.id = senders.clients_id " +
+                    "WHERE recipients.clients_id = ? and parcels.status = 'У курьера'" +
+                    "ORDER BY parcels.data DESC;";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, recepient_id);
+            ResultSet result = statement.executeQuery();
+            ArrayList<String> p = new ArrayList<String>();
+            while (result.next()){
+                p.add(result.getString(1) + "*" + result.getString(2) + "*" +
+                        result.getString(3) + "*" + result.getString(4));
+            }
+            return p;
         }
 
-        String query = "SELECT parcels.id, parcels.data, clients.name, clients.number " +
-                "FROM parcels " +
-                "JOIN recipients ON recipients.parcels_id = parcels.id " +
-                "JOIN senders ON senders.parcels_id = parcels.id " +
-                "JOIN clients ON clients.id = senders.clients_id " +
-                "WHERE recipients.clients_id = ? and parcels.status = 'У курьера'" +
-                "ORDER BY parcels.data DESC;";
-        PreparedStatement statement = connection.prepareStatement(query);
-        statement.setInt(1, recepient_id);
-        ResultSet result = statement.executeQuery();
+        public void recipientStatusParcle(String id) throws SQLException {
+            int id_ = Integer.parseInt(id);
+            String query6 = "UPDATE parcels SET status = 'Получена' WHERE id = ?";
+            PreparedStatement statement6 = connection.prepareStatement(query6);
+            statement6.setInt(1, id_);
+            statement6.executeUpdate();
+        }
+
+
+        public boolean checkNumberUpdate(String number) throws SQLException {
+            int id_user = getIdUser(getUserLogin());
+
+            String query10 = "SELECT clients.id FROM clients JOIN users on clients.users_id = users.id WHERE users.id = ?";
+            PreparedStatement statement10 = connection.prepareStatement(query10);
+            statement10.setInt(1, id_user);
+            ResultSet resultSet10 = statement10.executeQuery();
+            int client_id = 0;
+            if (resultSet10.next())
+                client_id = resultSet10.getInt(1);
+
+            String query = "SELECT number FROM clients WHERE number = ? and id NOT IN (?)";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, number);
+            statement.setInt(2, client_id);
+            ResultSet resultSet = statement.executeQuery();
+
+            String query1 = "SELECT number FROM couriers WHERE number = ? and id NOT IN (?)";
+            PreparedStatement statement1 = connection.prepareStatement(query1);
+            statement1.setString(1, number);
+            statement1.setInt(2, client_id);
+            ResultSet resultSet1 = statement1.executeQuery();
+
+            String query2 = "SELECT number FROM couriers WHERE number = ? and id NOT IN (?)";
+            PreparedStatement statement2 = connection.prepareStatement(query2);
+            statement2.setString(1, number);
+            statement2.setInt(2, client_id);
+            ResultSet resultSet2 = statement2.executeQuery();
+
+            int count = 0;
+
+            if (resultSet.next()){
+                count++;
+            }
+
+            if (resultSet1.next()){
+                count++;
+            }
+            if (resultSet2.next()){
+                count++;
+            }
+            return count != 0;
+
+        }
+
+        public boolean isLoginExistsUPDATE(String login) throws SQLException {
+            int id_user = getIdUser(getUserLogin());
+            String query = "SELECT COUNT(*) FROM users WHERE login = ? and id NOT IN (?)";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, login);
+            statement.setInt(2, id_user);
+            ResultSet resultSet = statement.executeQuery();
+            return resultSet.next() && resultSet.getInt(1) > 0;
+        }
+
+        public void updateUser(Client client) throws SQLException {
+            int id_user = getIdUser(getUserLogin());
+
+            String query10 = "SELECT clients.id FROM clients JOIN users on clients.users_id = users.id WHERE users.id = ?";
+            PreparedStatement statement10 = connection.prepareStatement(query10);
+            statement10.setInt(1, id_user);
+            ResultSet resultSet10 = statement10.executeQuery();
+            int client_id = 0;
+            if (resultSet10.next())
+                client_id = resultSet10.getInt(1);
+
+            String query3 = "SELECT address FROM clients WHERE id = ?";
+            PreparedStatement statement3 = connection.prepareStatement(query3);
+            statement3.setInt(1, client_id);
+            ResultSet resultSet3 = statement3.executeQuery();
+            String address = "";
+            if (resultSet3.next())
+                address = resultSet3.getString(1);
+
+
+            String query = "UPDATE users SET login = ?, password = ? WHERE id = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, client.getLogin());
+            statement.setString(2, client.getPassword());
+            statement.setInt(3, id_user);
+            statement.executeUpdate();
+
+            String new_address = client.getAddress();
+
+            if (!address.equals(new_address)){
+                String query2 = "UPDATE clients SET name = ?, number = ?, address = ?, " +
+                        "nearest_delivery_centers_id = NULL WHERE id = ? and users_id = ? ";
+
+                PreparedStatement statement2 = connection.prepareStatement(query2);
+                statement2.setString(1, client.getName());
+                statement2.setString(2, client.getNumber());
+                statement2.setString(3, client.getAddress());
+                statement2.setInt(4, client_id);
+                statement2.setInt(5, id_user);
+                statement2.executeUpdate();
+            }
+            else if(address.equals(new_address)){
+                String query2 = "UPDATE clients SET name = ?, number = ?, address = ? " +
+                        "WHERE id = ? and users_id = ? ";
+
+                PreparedStatement statement2 = connection.prepareStatement(query2);
+                statement2.setString(1, client.getName());
+                statement2.setString(2, client.getNumber());
+                statement2.setString(3, client.getAddress());
+                statement2.setInt(4, client_id);
+                statement2.setInt(5, id_user);
+                statement2.executeUpdate();
+            }
+        }
+
+    public ArrayList<String> name_delivery_center() throws SQLException {
+        String query10 = "SELECT name FROM delivery_centers";
+        PreparedStatement statement10 = connection.prepareStatement(query10);
+        ResultSet resultSet10 = statement10.executeQuery();
         ArrayList<String> p = new ArrayList<String>();
-        while (result.next()){
-            p.add(result.getString(1) + "*" + result.getString(2) + "*" +
-                    result.getString(3) + "*" + result.getString(4));
+        while (resultSet10.next()){
+            p.add(resultSet10.getString(1));
         }
         return p;
     }
 
-    public void recipientStatusParcle(String id) throws SQLException {
-        int id_ = Integer.parseInt(id);
-        String query6 = "UPDATE parcels SET status = 'Получена' WHERE id = ?";
-        PreparedStatement statement6 = connection.prepareStatement(query6);
-        statement6.setInt(1, id_);
-        statement6.executeUpdate();
-    }
+
 
 }

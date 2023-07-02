@@ -4,12 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5deec214-f450-428d-adf7-40b9644e7c48" name="Changes" comment="Аккаунт Админа, регистрация курьров и менеджеров с него, вывод в таблицы информации о курьерах и менеджерах">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/OrderRecipient.java" afterDir="false" />
+    <list default="true" id="5deec214-f450-428d-adf7-40b9644e7c48" name="Changes" comment="Получатель (клиент) подтверждает, что курьер принес посылку">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/UpdateConroller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/DatabaseConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Delivery_center.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Delivery_center.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/RegistrationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/RegistrationCourierController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/RegistrationCourierController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/RegistrationManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/RegistrationManagerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/base.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/base.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/registrationCourier.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/registrationCourier.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/registrationManager.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/registrationManager.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,24 +45,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_directory_selection": "D:/учеба/прикладное программирование/Курсовой проект/delivery_service/src/main/java/com/example/delivery_service",
-    "last_opened_file_path": "D:/учеба/прикладное программирование/Курсовой проект/delivery_service",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;D:/учеба/прикладное программирование/Курсовой проект/delivery_service/src/main/java/com/example/delivery_service&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/учеба/прикладное программирование/Курсовой проект/delivery_service&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.example.delivery_service" />
@@ -185,7 +191,14 @@
       <option name="project" value="LOCAL" />
       <updated>1688254957125</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Получатель (клиент) подтверждает, что курьер принес посылку">
+      <created>1688258925966</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1688258925966</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -199,7 +212,8 @@
     <MESSAGE value="заказы клиента, аккаунт менеджеров" />
     <MESSAGE value="Подтверждение заказов с аккаунта менеджера + аккаунт курьера, подтверждение с аккаунта курьера" />
     <MESSAGE value="Аккаунт Админа, регистрация курьров и менеджеров с него, вывод в таблицы информации о курьерах и менеджерах" />
-    <option name="LAST_COMMIT_MESSAGE" value="Аккаунт Админа, регистрация курьров и менеджеров с него, вывод в таблицы информации о курьерах и менеджерах" />
+    <MESSAGE value="Получатель (клиент) подтверждает, что курьер принес посылку" />
+    <option name="LAST_COMMIT_MESSAGE" value="Получатель (клиент) подтверждает, что курьер принес посылку" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -211,28 +225,58 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/delivery_service/DatabaseConnection.java</url>
-          <line>446</line>
+          <line>447</line>
           <option name="timeStamp" value="87" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/delivery_service/DatabaseConnection.java</url>
-          <line>434</line>
+          <line>435</line>
           <option name="timeStamp" value="88" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/delivery_service/DatabaseConnection.java</url>
-          <line>428</line>
+          <line>429</line>
           <option name="timeStamp" value="89" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/delivery_service/RegistrationManagerController.java</url>
-          <line>106</line>
+          <line>111</line>
           <option name="timeStamp" value="94" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/delivery_service/RegistrationManagerController.java</url>
-          <line>59</line>
+          <line>68</line>
           <option name="timeStamp" value="95" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/delivery_service/DatabaseConnection.java</url>
+          <line>590</line>
+          <option name="timeStamp" value="96" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/delivery_service/DatabaseConnection.java</url>
+          <line>602</line>
+          <option name="timeStamp" value="97" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/delivery_service/DatabaseConnection.java</url>
+          <line>588</line>
+          <option name="timeStamp" value="98" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/delivery_service/DatabaseConnection.java</url>
+          <line>430</line>
+          <option name="timeStamp" value="99" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/delivery_service/RegistrationManagerController.java</url>
+          <line>75</line>
+          <option name="timeStamp" value="100" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/delivery_service/RegistrationManagerController.java</url>
+          <line>72</line>
+          <option name="timeStamp" value="101" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

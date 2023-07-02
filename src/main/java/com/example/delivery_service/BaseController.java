@@ -19,6 +19,9 @@ public class BaseController {
     private Button arrange;
 
     @FXML
+    private Button update;
+
+    @FXML
     private Button exit;
 
     @FXML
@@ -87,6 +90,13 @@ public class BaseController {
             }
         });
 
+        update.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Transition.changeScene(event, "update.fxml", "Client");
+            }
+        });
+
         arrange.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -115,7 +125,7 @@ public class BaseController {
     }
 
     private void makeOrder() throws SQLException, ClassNotFoundException {
-        String typeDeliveryText = (String) typeDelivery.getValue();
+        String typeDeliveryText = String.valueOf(typeDelivery.getValue());
 
         LocalDateTime timestamp = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");

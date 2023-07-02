@@ -15,6 +15,7 @@
         <AnchorPane layoutX="20.0" layoutY="20.0" prefHeight="610.0" prefWidth="660.0" style="-fx-background-color: E7DBDB;">
          <children>
             <Button fx:id="exit" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: beige;" text="Выйти" textAlignment="CENTER" />
+            <Button fx:id="update" layoutX="522.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: beige;" text="Изменить данные" />
          </children></AnchorPane>
         <AnchorPane layoutX="60.0" layoutY="71.0" prefHeight="509.0" prefWidth="582.0" style="-fx-background-color: beige;">
          <children>

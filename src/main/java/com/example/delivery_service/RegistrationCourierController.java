@@ -1,15 +1,15 @@
 package com.example.delivery_service;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class RegistrationCourierController {
     @FXML
@@ -19,7 +19,7 @@ public class RegistrationCourierController {
     private Button backRegistration;
 
     @FXML
-    private TextField center_delivery;
+    private ComboBox<String> center_delivery;
 
     @FXML
     private TextField loginRegistration;
@@ -53,6 +53,14 @@ public class RegistrationCourierController {
 
     @FXML
     void initialize() throws SQLException, ClassNotFoundException {
+        ArrayList<String> p = DatabaseConnection.getInstance().name_delivery_center();
+        ObservableList<String> items = FXCollections.observableArrayList();
+        for (int i = 0; i < p.size(); i++){
+            String str = p.get(i);
+            items.add(str);
+        }
+        center_delivery.setItems(items);
+
         backRegistration.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -64,30 +72,17 @@ public class RegistrationCourierController {
             @Override
             public void handle(ActionEvent event) {
                 try {
-                    if ((name.getText() == "" || name.getText().length() > 30) || (number.getText() == "" || number.getText().length() != 12 ||
-                            (number.getText().charAt(0) != '+' && number.getText().charAt(1) != '7') ||
-                            DatabaseConnection.getInstance().checkNumber(number.getText())) || (loginRegistration.getText() == ""
+                    if ((name.getText() == "" || name.getText().length() > 30) || (loginRegistration.getText() == ""
                             || loginRegistration.getText().length() > 20 || DatabaseConnection.getInstance().isLoginExists(loginRegistration.getText()))
                             || (passwordRegistration.getText() == "" || passwordRegistration.getText().length() > 30
-                            || passwordRegistration.getText().length() < 6) || center_delivery.getText() == "" || center_delivery.getText().length() > 50 ||
-                            !DatabaseConnection.getInstance().checkDelivery_center(center_delivery.getText())){
+                            || passwordRegistration.getText().length() < 6) || center_delivery.getSelectionModel().isEmpty()){
 
+
+                        if (center_delivery.getSelectionModel().isEmpty())
+                            warningCenter_Delivery.setText(" Центр доставки не выбран");
 
                         if (name.getText() == "" || name.getText().length() > 30)
                             name.setText("Имя некорректное");
-
-                        if (number.getText() == "" || number.getText().length() != 12 ||
-                                (number.getText().charAt(0) != '+' && number.getText().charAt(1) != '7') ||
-                                DatabaseConnection.getInstance().checkNumber(number.getText())){
-                            if (DatabaseConnection.getInstance().checkNumber(number.getText())) {
-                                number.setText("Номер занят");
-                            } else number.setText("Номер некорректный");
-                        }
-
-                        if (center_delivery.getText() == "" || center_delivery.getText().length() > 50 ||
-                                !DatabaseConnection.getInstance().checkDelivery_center(center_delivery.getText())){
-                            center_delivery.setText("Такого центра доставки не существует");
-                        }
 
                         if (loginRegistration.getText() == "" || loginRegistration.getText().length() > 20 || DatabaseConnection.getInstance().isLoginExists(loginRegistration.getText())) {
                             if (DatabaseConnection.getInstance().isLoginExists(loginRegistration.getText())) {
@@ -105,6 +100,7 @@ public class RegistrationCourierController {
                         Transition.changeScene(event, "baseAdmin.fxml", "ADMIN");
 
                     }
+
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 } catch (ClassNotFoundException | NoSuchAlgorithmException e) {
@@ -120,7 +116,7 @@ public class RegistrationCourierController {
     private void registerCourier() throws SQLException, ClassNotFoundException, NoSuchAlgorithmException {
         String nameText = name.getText();
         String numberText = number.getText();
-        String center_deliveryText = center_delivery.getText();
+        String center_deliveryText = center_delivery.getValue();
         String loginRegistrationText = loginRegistration.getText();
         String passwordRegistrationText = passwordRegistration.getText();
 
