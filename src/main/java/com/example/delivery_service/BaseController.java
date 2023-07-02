@@ -28,31 +28,31 @@ public class BaseController {
     private Label id;
 
     @FXML
-    private TableColumn<OrderRecipient, String> name_recepient;
+    private TableColumn<Parcle, String> name_recepient;
 
     @FXML
-    private TableColumn<OrderSender, String> name_sender;
+    private TableColumn<Parcle, String> name_sender;
 
     @FXML
-    private TableColumn<OrderRecipient, String> number_resepient;
+    private TableColumn<Parcle, String> number_resepient;
 
     @FXML
-    private TableColumn<OrderSender, String> number_sender;
+    private TableColumn<Parcle, String> number_sender;
 
     @FXML
-    private TableColumn<OrderRecipient, Button> ok;
+    private TableColumn<Parcle, Button> ok;
 
     @FXML
-    private TableColumn<OrderSender, String> parcels_dta;
+    private TableColumn<Parcle, String> parcels_dta;
 
     @FXML
-    private TableColumn<OrderRecipient, String> parcels_dta_rec;
+    private TableColumn<Parcle, String> parcels_dta_rec;
 
     @FXML
-    private TableColumn<OrderSender, String> parcels_id;
+    private TableColumn<Parcle, String> parcels_id;
 
     @FXML
-    private TableColumn<OrderRecipient, String> parcels_id_rec;
+    private TableColumn<Parcle, String> parcels_id_rec;
 
     @FXML
     private TextField recipientName;
@@ -61,13 +61,13 @@ public class BaseController {
     private TextField recipientNumber;
 
     @FXML
-    private TableColumn<OrderSender, String> res;
+    private TableColumn<Parcle, String> res;
 
     @FXML
-    private TableView<OrderRecipient> recep;
+    private TableView<Parcle> recep;
 
     @FXML
-    private TableView<OrderSender> sender;
+    private TableView<Parcle> sender;
 
     @FXML
     private ComboBox<String> typeDelivery;
@@ -145,11 +145,11 @@ public class BaseController {
 
     private void parcleStatus() throws SQLException, ClassNotFoundException {
         ArrayList<String> p = DatabaseConnection.getInstance().parcleStatus();
-        ObservableList<OrderSender> parcels = FXCollections.observableArrayList();
+        ObservableList<Parcle> parcels = FXCollections.observableArrayList();
         for (int i = 0; i < p.size(); i++){
             String str = p.get(i);
             String[] s = str.split("\\*");
-            parcels.add(new OrderSender(s[0], s[1], s[2], s[3], s[4]));
+            parcels.add(new Parcle(s[0], s[1], s[2], s[3], s[4]));
         }
 
         parcels_id.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -172,7 +172,7 @@ public class BaseController {
 
         // Установка фабрики значений для столбца "ok"
         ok.setCellFactory(column -> {
-            return new TableCell<OrderRecipient, Button>() {
+            return new TableCell<Parcle, Button>() {
                 @Override
                 protected void updateItem(Button item, boolean empty) {
                     super.updateItem(item, empty);
@@ -186,7 +186,7 @@ public class BaseController {
         });
 
         ArrayList<String> p = DatabaseConnection.getInstance().recepient_parcle();
-        ObservableList<OrderRecipient> data__ = FXCollections.observableArrayList();
+        ObservableList<Parcle> data__ = FXCollections.observableArrayList();
         for (int i = 0; i < p.size(); i++){
             String str = p.get(i);
             String[] s = str.split("\\*");
@@ -202,7 +202,7 @@ public class BaseController {
                     }
                 }
             });
-                data__.add(new OrderRecipient(s[0], s[1], s[2], s[3], button));
+                data__.add(new Parcle(s[0], s[1], s[2], s[3], button));
             }
         recep.setItems(data__);
         recep.refresh();

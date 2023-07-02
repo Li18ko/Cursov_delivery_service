@@ -1,9 +1,7 @@
 package com.example.delivery_service;
 
-import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,41 +17,41 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class BaseAdminController {
 
     @FXML
-    private TableColumn<informCourier, String> center_delivery_courier;
+    private TableColumn<informAdmin, String> center_delivery_courier;
 
     @FXML
-    private TableColumn<informManager, String> center_delivery_manager;
+    private TableColumn<informAdmin, String> center_delivery_manager;
 
     @FXML
-    private TableView<informCourier> courier;
+    private TableView<informAdmin> courier;
 
     @FXML
     private Button exit;
 
     @FXML
-    private TableColumn<informCourier, String> login_courier;
+    private TableColumn<informAdmin, String> login_courier;
 
     @FXML
-    private TableColumn<informManager, String> login_manager;
+    private TableColumn<informAdmin, String> login_manager;
 
     @FXML
-    private TableView<informManager> manager;
+    private TableView<informAdmin> manager;
 
     @FXML
-    private TableColumn<informCourier, String> name_courier;
+    private TableColumn<informAdmin, String> name_courier;
 
     @FXML
-    private TableColumn<informManager, String> name_manager;
+    private TableColumn<informAdmin, String> name_manager;
 
 
     @FXML
-    private TableColumn<informCourier, String> number_courier;;
+    private TableColumn<informAdmin, String> number_courier;;
 
     @FXML
-    private TableColumn<informCourier, Button> ok_courier;
+    private TableColumn<informAdmin, Button> ok_courier;
 
     @FXML
-    private TableColumn<informManager, Button> ok_manager;
+    private TableColumn<informAdmin, Button> ok_manager;
 
     @FXML
     private Button registrCourier;
@@ -74,7 +72,7 @@ public class BaseAdminController {
 
         // Установка фабрики значений для столбца "ok"
         ok_manager.setCellFactory(column -> {
-            return new TableCell<informManager, Button>() {
+            return new TableCell<informAdmin, Button>() {
                 @Override
                 protected void updateItem(Button item, boolean empty) {
                     super.updateItem(item, empty);
@@ -95,7 +93,7 @@ public class BaseAdminController {
 
         // Установка фабрики значений для столбца "ok"
         ok_courier.setCellFactory(column -> {
-            return new TableCell<informCourier, Button>() {
+            return new TableCell<informAdmin, Button>() {
                 @Override
                 protected void updateItem(Button item, boolean empty) {
                     super.updateItem(item, empty);
@@ -138,7 +136,7 @@ public class BaseAdminController {
 
     private void dataADMIN() throws SQLException, ClassNotFoundException {
         ArrayList<String> p = DatabaseConnection.getInstance().deleteCourier();
-        ObservableList<informCourier> datas = FXCollections.observableArrayList();
+        ObservableList<informAdmin> datas = FXCollections.observableArrayList();
         for (int i = 0; i < p.size(); i++){
             String str = p.get(i);
             String[] s = str.split("\\*");
@@ -154,12 +152,12 @@ public class BaseAdminController {
                     }
                 }
             });
-            datas.add(new informCourier(s[0], s[1], s[2], s[3], button));
+            datas.add(new informAdmin(s[0], s[1], s[2], s[3], button));
 
         }
 
         ArrayList<String> q = DatabaseConnection.getInstance().deleteManager();
-        ObservableList<informManager> data = FXCollections.observableArrayList();
+        ObservableList<informAdmin> data = FXCollections.observableArrayList();
         for (int i = 0; i < q.size(); i++){
             String str = q.get(i);
             String[] s = str.split("\\*");
@@ -175,7 +173,7 @@ public class BaseAdminController {
                     }
                 }
             });
-            data.add(new informManager(s[0], s[1], s[2], button));
+            data.add(new informAdmin(s[0], s[1], s[2], button));
         }
 
         courier.setItems(datas);

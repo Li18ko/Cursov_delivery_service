@@ -4,18 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5deec214-f450-428d-adf7-40b9644e7c48" name="Changes" comment="Получатель (клиент) подтверждает, что курьер принес посылку">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/UpdateConroller.java" afterDir="false" />
+    <list default="true" id="5deec214-f450-428d-adf7-40b9644e7c48" name="Changes" comment="Изменение данных у клиента ( возможность редактировать данные)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseAdminController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/DatabaseConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Delivery_center.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Delivery_center.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/RegistrationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/RegistrationCourierController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/RegistrationCourierController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/RegistrationManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/RegistrationManagerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/base.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/base.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/registrationCourier.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/registrationCourier.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/registrationManager.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/registrationManager.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseCourierController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseCourierController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseManagerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Courier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Courier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/DataManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Manager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/OrderRecipient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/OrderSender.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Parcle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Parcle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/informCourier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/informAdmin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/informManager.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,7 +200,14 @@
       <option name="project" value="LOCAL" />
       <updated>1688258925966</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Изменение данных у клиента ( возможность редактировать данные)">
+      <created>1688316251356</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1688316251356</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -213,7 +222,8 @@
     <MESSAGE value="Подтверждение заказов с аккаунта менеджера + аккаунт курьера, подтверждение с аккаунта курьера" />
     <MESSAGE value="Аккаунт Админа, регистрация курьров и менеджеров с него, вывод в таблицы информации о курьерах и менеджерах" />
     <MESSAGE value="Получатель (клиент) подтверждает, что курьер принес посылку" />
-    <option name="LAST_COMMIT_MESSAGE" value="Получатель (клиент) подтверждает, что курьер принес посылку" />
+    <MESSAGE value="Изменение данных у клиента ( возможность редактировать данные)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Изменение данных у клиента ( возможность редактировать данные)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

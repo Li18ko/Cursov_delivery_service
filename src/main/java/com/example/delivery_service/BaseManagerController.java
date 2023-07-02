@@ -15,41 +15,34 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.util.Callback;
 
 
 public class BaseManagerController {
 
     @FXML
-    private ResourceBundle resources;
+    private TableColumn<Manager, String> center_delivery;
 
     @FXML
-    private URL location;
-
-    @FXML
-    private TableColumn<DataManager, String> center_delivery;
-
-    @FXML
-    private TableColumn<DataManager, String> data;
+    private TableColumn<Manager, String> data;
 
     @FXML
     private Button exit;
 
     @FXML
-    private TableColumn<DataManager, Button> ok;
+    private TableColumn<Manager, Button> ok;
 
 
     @FXML
-    private TableColumn<DataManager, String> parcels_id;
+    private TableColumn<Manager, String> parcels_id;
 
     @FXML
-    private TableView<DataManager> table;
+    private TableView<Manager> table;
 
     @FXML
-    private TableColumn<DataManager, String> typeDelivery;
+    private TableColumn<Manager, String> typeDelivery;
 
     @FXML
-    private TableColumn<DataManager, String> weight;
+    private TableColumn<Manager, String> weight;
     private Button button;
 
     @FXML
@@ -65,7 +58,7 @@ public class BaseManagerController {
 
         // Установка фабрики значений для столбца "ok"
         ok.setCellFactory(column -> {
-            return new TableCell<DataManager, Button>() {
+            return new TableCell<Manager, Button>() {
                 @Override
                 protected void updateItem(Button item, boolean empty) {
                     super.updateItem(item, empty);
@@ -92,7 +85,7 @@ public class BaseManagerController {
 
     private void dataManager() throws SQLException, ClassNotFoundException {
         ArrayList<String> p = DatabaseConnection.getInstance().dataManager();
-        ObservableList<DataManager> datas = FXCollections.observableArrayList();
+        ObservableList<Manager> datas = FXCollections.observableArrayList();
         for (int i = 0; i < p.size(); i++){
             String str = p.get(i);
             String[] s = str.split("\\*");
@@ -108,7 +101,7 @@ public class BaseManagerController {
                     }
                 }
             });
-            datas.add(new DataManager(s[0], s[1], s[2], s[3], s[4], button));
+            datas.add(new Manager(s[0], s[1], s[2], s[3], s[4], button));
         }
 
         table.setItems(datas);

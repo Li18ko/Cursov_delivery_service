@@ -17,33 +17,26 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class BaseCourierController {
-
     @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
-    private TableColumn<DataCourier, String> address_recipient;
+    private TableColumn<Courier, String> address_recipient;
 
     @FXML
     private Button exit;
 
     @FXML
-    private TableColumn<DataCourier, String> name_recepient;
+    private TableColumn<Courier, String> name_recepient;
 
     @FXML
-    private TableColumn<DataCourier, String> number_recepient;
+    private TableColumn<Courier, String> number_recepient;
 
     @FXML
-    private TableColumn<DataCourier, Button> ok;
+    private TableColumn<Courier, Button> ok;
 
     @FXML
-    private TableColumn<DataCourier, String> parcels_id;
+    private TableColumn<Courier, String> parcels_id;
 
     @FXML
-    private TableView<DataCourier> table;
+    private TableView<Courier> table;
 
     @FXML
     void initialize() throws SQLException, ClassNotFoundException {
@@ -57,7 +50,7 @@ public class BaseCourierController {
 
         // Установка фабрики значений для столбца "ok"
         ok.setCellFactory(column -> {
-            return new TableCell<DataCourier, Button>() {
+            return new TableCell<Courier, Button>() {
                 @Override
                 protected void updateItem(Button item, boolean empty) {
                     super.updateItem(item, empty);
@@ -83,7 +76,7 @@ public class BaseCourierController {
 
     private void dataCourier() throws SQLException, ClassNotFoundException {
         ArrayList<String> p = DatabaseConnection.getInstance().dataCourier();
-        ObservableList<DataCourier> datas = FXCollections.observableArrayList();
+        ObservableList<Courier> datas = FXCollections.observableArrayList();
         for (int i = 0; i < p.size(); i++){
             String str = p.get(i);
             String[] s = str.split("\\*");
@@ -99,7 +92,7 @@ public class BaseCourierController {
                     }
                 }
             });
-            datas.add(new DataCourier(s[0], s[1], s[2], s[3], button));
+            datas.add(new Courier(s[0], s[1], s[2], s[3], button));
         }
 
         table.setItems(datas);

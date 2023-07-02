@@ -1,6 +1,13 @@
 package com.example.delivery_service;
 
+import javafx.scene.control.Button;
+
 public class Courier {
+    private Button button;
+    private String address;
+    private String number_recipient;
+    private String name_recipient;
+    private String parcle_id;
     private String name;
     private String number;
     private String login;
@@ -13,6 +20,14 @@ public class Courier {
         this.login = login;
         this.password = hashedPassword;
         this.center_delivery = center_delivery;
+    }
+
+    public Courier(String parcle_id, String name_recipient, String number_recipient, String address, Button button) {
+        this.parcle_id = parcle_id;
+        this.name_recipient = name_recipient;
+        this.number_recipient = number_recipient;
+        this.address = address;
+        this.button = button;
     }
 
     public String getName() {
