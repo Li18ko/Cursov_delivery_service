@@ -129,7 +129,7 @@ public class BaseAdminController {
         exit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Transition.changeScene(event, "nearestDcAdmin.fxml", "Delivery Service");
+                Transition.changeScene(event, "startSheet.fxml", "Delivery Service");
 
             }
         });

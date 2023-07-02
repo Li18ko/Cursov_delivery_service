@@ -42,7 +42,7 @@ public class BaseCourierController {
     void initialize() throws SQLException, ClassNotFoundException {
         table.setEditable(true);
 
-        parcels_id.setCellValueFactory(new PropertyValueFactory<>("parcle_id"));
+        parcels_id.setCellValueFactory(new PropertyValueFactory<>("parcles_id"));
         name_recepient.setCellValueFactory(new PropertyValueFactory<>("name_recipient"));
         number_recepient.setCellValueFactory(new PropertyValueFactory<>("number_recipient"));
         address_recipient.setCellValueFactory(new PropertyValueFactory<>("address"));
@@ -75,8 +75,9 @@ public class BaseCourierController {
     }
 
     private void dataCourier() throws SQLException, ClassNotFoundException {
+
         ArrayList<String> p = DatabaseConnection.getInstance().dataCourier();
-        ObservableList<Courier> datas = FXCollections.observableArrayList();
+        ObservableList<Courier> dat = FXCollections.observableArrayList();
         for (int i = 0; i < p.size(); i++){
             String str = p.get(i);
             String[] s = str.split("\\*");
@@ -92,10 +93,10 @@ public class BaseCourierController {
                     }
                 }
             });
-            datas.add(new Courier(s[0], s[1], s[2], s[3], button));
+            dat.add(new Courier(s[0], s[1], s[2], s[3], button));
         }
 
-        table.setItems(datas);
+        table.setItems(dat);
         table.refresh();
     }
 

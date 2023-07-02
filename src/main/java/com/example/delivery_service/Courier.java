@@ -7,7 +7,7 @@ public class Courier {
     private String address;
     private String number_recipient;
     private String name_recipient;
-    private String parcle_id;
+    private String parcles_id;
     private String name;
     private String number;
     private String login;
@@ -22,12 +22,52 @@ public class Courier {
         this.center_delivery = center_delivery;
     }
 
-    public Courier(String parcle_id, String name_recipient, String number_recipient, String address, Button button) {
-        this.parcle_id = parcle_id;
+    public Courier(String parcels_id, String name_recipient, String number_recipient, String address, Button button) {
+        this.parcles_id = parcels_id;
         this.name_recipient = name_recipient;
         this.number_recipient = number_recipient;
         this.address = address;
         this.button = button;
+    }
+
+    public Button getButton() {
+        return button;
+    }
+
+    public void setButton(Button button) {
+        this.button = button;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getNumber_recipient() {
+        return number_recipient;
+    }
+
+    public void setNumber_recipient(String number_recipient) {
+        this.number_recipient = number_recipient;
+    }
+
+    public String getName_recipient() {
+        return name_recipient;
+    }
+
+    public void setName_recipient(String name_recipient) {
+        this.name_recipient = name_recipient;
+    }
+
+    public String getParcles_id() {
+        return parcles_id;
+    }
+
+    public void setParcles_id(String parcles_id) {
+        this.parcles_id = parcles_id;
     }
 
     public String getName() {

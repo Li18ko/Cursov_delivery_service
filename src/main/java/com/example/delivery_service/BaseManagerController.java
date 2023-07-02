@@ -49,6 +49,7 @@ public class BaseManagerController {
     void initialize() throws SQLException, ClassNotFoundException {
         table.setEditable(true);
 
+
         parcels_id.setCellValueFactory(new PropertyValueFactory<>("parcle_id"));
         weight.setCellValueFactory(new PropertyValueFactory<>("weight"));
         typeDelivery.setCellValueFactory(new PropertyValueFactory<>("typeDelivery"));
