@@ -41,10 +41,9 @@ public class BaseCourierController {
     @FXML
     void initialize() throws SQLException, ClassNotFoundException {
         table.setEditable(true);
-
-        parcels_id.setCellValueFactory(new PropertyValueFactory<>("parcles_id"));
-        name_recepient.setCellValueFactory(new PropertyValueFactory<>("name_recipient"));
-        number_recepient.setCellValueFactory(new PropertyValueFactory<>("number_recipient"));
+        parcels_id.setCellValueFactory(new PropertyValueFactory<>("parcels_id"));
+        name_recepient.setCellValueFactory(new PropertyValueFactory<>("name"));
+        number_recepient.setCellValueFactory(new PropertyValueFactory<>("number"));
         address_recipient.setCellValueFactory(new PropertyValueFactory<>("address"));
         ok.setCellValueFactory(new PropertyValueFactory<>("button"));
 

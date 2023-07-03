@@ -6,37 +6,35 @@ import java.sql.Timestamp;
 
 public class Parcle {
     private Button button;
-    private String numberSenders;
-    private String nameSenders;
+    private String number;
+    private String name;
     private String typeDelivery;
     private String weight;
     private String data;
     private int id;
     private String status;
-    private String recipientName;
-    private String recipientNumber;
 
-    public Parcle(String typeDelivery, String weight, String data, String recipientName, String recipientNumber) {
+    public Parcle(String typeDelivery, String weight, String data, String name, String number) {
         this.typeDelivery = typeDelivery;
         this.weight = weight;
         this.data = data;
-        this.recipientName = recipientName;
-        this.recipientNumber = recipientNumber;
+        this.name = name;
+        this.number = number;
     }
 
-    public Parcle(int id, String data, String recipientName, String recipientNumber, String status) {
+    public Parcle(int id, String data, String name, String number, String status) {
         this.id = id;
         this.data = data;
-        this.recipientName = recipientName;
-        this.recipientNumber = recipientNumber;
+        this.name = name;
+        this.number = number;
         this.status = status;
     }
 
-    public Parcle(String id, String data, String nameSenders, String numberSenders, Button button) {
+    public Parcle(String id, String data, String name, String number, Button button) {
         this.id = Integer.parseInt(id);
         this.data = data;
-        this.nameSenders = nameSenders;
-        this.numberSenders = numberSenders;
+        this.name = name;
+        this.number = number;
         this.button = button;
     }
 
@@ -48,52 +46,20 @@ public class Parcle {
         this.button = button;
     }
 
-    public String getNumberSenders() {
-        return numberSenders;
+    public String getNumber() {
+        return number;
     }
 
-    public void setNumberSenders(String numberSenders) {
-        this.numberSenders = numberSenders;
+    public void setNumber(String number) {
+        this.number = number;
     }
 
-    public String getNameSenders() {
-        return nameSenders;
+    public String getName() {
+        return name;
     }
 
-    public void setNameSenders(String nameSenders) {
-        this.nameSenders = nameSenders;
-    }
-
-    public String getId() {
-        return String.valueOf(id);
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getRecipientName() {
-        return recipientName;
-    }
-
-    public void setRecipientName(String recipientName) {
-        this.recipientName = recipientName;
-    }
-
-    public String getRecipientNumber() {
-        return recipientNumber;
-    }
-
-    public void setRecipientNumber(String recipientNumber) {
-        this.recipientNumber = recipientNumber;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getTypeDelivery() {
@@ -118,5 +84,21 @@ public class Parcle {
 
     public void setData(String data) {
         this.data = data;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

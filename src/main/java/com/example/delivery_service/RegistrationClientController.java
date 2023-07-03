@@ -9,11 +9,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
 
-public class UpdateConroller {
+public class RegistrationClientController {
 
     @FXML
     private ResourceBundle resources;
@@ -25,10 +25,10 @@ public class UpdateConroller {
     private TextField address;
 
     @FXML
-    private Label advertisement;
+    private Label warningPassword;
 
     @FXML
-    private Button backupdate;
+    private Button backRegistration;
 
     @FXML
     private TextField loginRegistration;
@@ -43,41 +43,27 @@ public class UpdateConroller {
     private PasswordField passwordRegistration;
 
     @FXML
-    private Button update;
+    private Button registration;
+
 
     @FXML
-    private Label warningAddress;
-
-    @FXML
-    private Label warningLogin;
-
-    @FXML
-    private Label warningName;
-
-    @FXML
-    private Label warningNumber;
-
-    @FXML
-    private Label warningPassword;
-
-    @FXML
-    void initialize() {
-        backupdate.setOnAction(new EventHandler<ActionEvent>() {
+    void initialize() throws SQLException, ClassNotFoundException {
+        backRegistration.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Transition.changeScene(event, "baseClient.fxml", "Client");
+                Transition.changeScene(event, "startSheet.fxml", "Client");
             }
         });
 
-        update.setOnAction(new EventHandler<ActionEvent>() {
+        registration.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 try {
                     if ((name.getText() == "" || name.getText().length() > 30) || (number.getText() == "" || number.getText().length() != 12 ||
                             (number.getText().charAt(0) != '+' && number.getText().charAt(1) != '7') ||
-                            DatabaseConnection.getInstance().checkNumberUpdate(number.getText())) || (address.getText() == "" ||
+                            DatabaseConnection.getInstance().checkNumber(number.getText())) || (address.getText() == "" ||
                             address.getText().length() > 100 || address.getText().length() < 15) || (loginRegistration.getText() == ""
-                            || loginRegistration.getText().length() > 20 || DatabaseConnection.getInstance().isLoginExistsUPDATE(loginRegistration.getText()))
+                            || loginRegistration.getText().length() > 20 || DatabaseConnection.getInstance().isLoginExists(loginRegistration.getText()))
                             || (passwordRegistration.getText() == "" || passwordRegistration.getText().length() > 30 || passwordRegistration.getText().length() < 6)) {
 
 
@@ -86,8 +72,8 @@ public class UpdateConroller {
 
                         if (number.getText() == "" || number.getText().length() != 12 ||
                                 (number.getText().charAt(0) != '+' && number.getText().charAt(1) != '7') ||
-                                DatabaseConnection.getInstance().checkNumberUpdate(number.getText())){
-                            if (DatabaseConnection.getInstance().checkNumberUpdate(number.getText())) {
+                                DatabaseConnection.getInstance().checkNumber(number.getText())){
+                            if (DatabaseConnection.getInstance().checkNumber(number.getText())) {
                                 number.setText("Номер занят");
                             } else number.setText("Номер некорректный");
                         }
@@ -95,8 +81,8 @@ public class UpdateConroller {
                         if (address.getText() == "" || address.getText().length() > 100 || address.getText().length() < 15)
                             address.setText("Адрес некорректный");
 
-                        if (loginRegistration.getText() == "" || loginRegistration.getText().length() > 20 || DatabaseConnection.getInstance().isLoginExistsUPDATE(loginRegistration.getText())) {
-                            if (DatabaseConnection.getInstance().isLoginExistsUPDATE(loginRegistration.getText())) {
+                        if (loginRegistration.getText() == "" || loginRegistration.getText().length() > 20 || DatabaseConnection.getInstance().isLoginExists(loginRegistration.getText())) {
+                            if (DatabaseConnection.getInstance().isLoginExists(loginRegistration.getText())) {
                                 loginRegistration.setText("Логин занят");
                             } else loginRegistration.setText("Логин некорректный");
                         }
@@ -107,8 +93,8 @@ public class UpdateConroller {
                     }
 
                     else {
-                        updateClients();
-                        Transition.changeScene(event, "baseClient.fxml", "Clients");
+                        registerUser();
+                        Transition.changeScene(event, "startSheet.fxml", "Client");
 
                     }
                 } catch (SQLException e) {
@@ -121,10 +107,9 @@ public class UpdateConroller {
 
 
         });
-
     }
 
-    private void updateClients() throws SQLException, ClassNotFoundException, NoSuchAlgorithmException {
+    private void registerUser() throws SQLException, ClassNotFoundException, NoSuchAlgorithmException {
         String nameText = name.getText();
         String numberText = number.getText();
         String addressText = address.getText();
@@ -135,8 +120,7 @@ public class UpdateConroller {
 
         Client client = new Client(nameText, numberText, addressText, loginRegistrationText, hashedPassword);
 
-        DatabaseConnection.getInstance().updateUser(client);
+        DatabaseConnection.getInstance().registerUser(client);
 
     }
-
 }

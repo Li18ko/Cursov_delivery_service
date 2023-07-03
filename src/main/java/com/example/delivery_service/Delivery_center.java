@@ -11,8 +11,9 @@ public class Delivery_center {
         this.address = address;
     }
 
-    public Delivery_center(String name) {
+    public Delivery_center(String name, String address) {
         this.name = name;
+        this.address = address;
     }
 
     public int getId() {

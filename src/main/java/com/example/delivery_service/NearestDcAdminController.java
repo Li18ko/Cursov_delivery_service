@@ -1,9 +1,7 @@
 package com.example.delivery_service;
 
-import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,7 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class nearestDcAdminController {
+public class NearestDcAdminController {
 
     @FXML
     private TableColumn<Client, ComboBox<String>> address_cd;
@@ -43,7 +41,7 @@ public class nearestDcAdminController {
         table.setEditable(true);
 
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
-        address_client.setCellValueFactory(new PropertyValueFactory<>("address_client"));
+        address_client.setCellValueFactory(new PropertyValueFactory<>("address"));
         address_cd.setCellValueFactory(new PropertyValueFactory<>("address_cd"));
         save.setCellValueFactory(new PropertyValueFactory<>("button"));
 
@@ -63,7 +61,7 @@ public class nearestDcAdminController {
         });
 
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
-        address_client.setCellValueFactory(new PropertyValueFactory<>("address_client"));
+        address_client.setCellValueFactory(new PropertyValueFactory<>("address"));
         address_cd.setCellValueFactory(new PropertyValueFactory<>("address_cd"));
 
         // Установка фабрики значений для столбца "address_cd"

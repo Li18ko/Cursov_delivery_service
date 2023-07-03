@@ -2,30 +2,25 @@ package com.example.delivery_service;
 
 import javafx.scene.control.Button;
 
-public class Courier {
+public class Courier extends User{
     private Button button;
     private String address;
-    private String number_recipient;
-    private String name_recipient;
-    private String parcles_id;
-    private String name;
     private String number;
-    private String login;
+    private String parcels_id;
+    private String name;
     private String center_delivery;
-    private String password;
 
-    public Courier(String name, String number, String center_delivery, String login, String hashedPassword) {
+    public Courier(String name, String number, String center_delivery, String login, String password) {
+        super(login, password);
         this.name = name;
         this.number = number;
-        this.login = login;
-        this.password = hashedPassword;
         this.center_delivery = center_delivery;
     }
 
-    public Courier(String parcels_id, String name_recipient, String number_recipient, String address, Button button) {
-        this.parcles_id = parcels_id;
-        this.name_recipient = name_recipient;
-        this.number_recipient = number_recipient;
+    public Courier(String parcels_id, String name, String number, String address, Button button) {
+        this.parcels_id = parcels_id;
+        this.name = name;
+        this.number = number;
         this.address = address;
         this.button = button;
     }
@@ -46,28 +41,12 @@ public class Courier {
         this.address = address;
     }
 
-    public String getNumber_recipient() {
-        return number_recipient;
+    public String getParcels_id() {
+        return parcels_id;
     }
 
-    public void setNumber_recipient(String number_recipient) {
-        this.number_recipient = number_recipient;
-    }
-
-    public String getName_recipient() {
-        return name_recipient;
-    }
-
-    public void setName_recipient(String name_recipient) {
-        this.name_recipient = name_recipient;
-    }
-
-    public String getParcles_id() {
-        return parcles_id;
-    }
-
-    public void setParcles_id(String parcles_id) {
-        this.parcles_id = parcles_id;
+    public void setParcels_id(String parcels_id) {
+        this.parcels_id = parcels_id;
     }
 
     public String getName() {
@@ -86,13 +65,6 @@ public class Courier {
         this.number = number;
     }
 
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
 
     public String getCenter_delivery() {
         return center_delivery;
@@ -102,11 +74,4 @@ public class Courier {
         this.center_delivery = center_delivery;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

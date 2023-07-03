@@ -14,7 +14,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class BaseController {
+public class BaseClientController {
     @FXML
     private Button arrange;
 
@@ -119,7 +119,7 @@ public class BaseController {
 
                     else{
                         makeOrder();
-                        Transition.changeScene(event, "base.fxml", "Client");
+                        Transition.changeScene(event, "baseClient.fxml", "Client");
                         parcleStatus();
 
 
@@ -156,8 +156,8 @@ public class BaseController {
     private void parcleStatus() throws SQLException, ClassNotFoundException {
         parcels_id_send.setCellValueFactory(new PropertyValueFactory<>("id"));
         parcels_data_send.setCellValueFactory(new PropertyValueFactory<>("data"));
-        name_recepient.setCellValueFactory(new PropertyValueFactory<>("recipientName"));
-        number_resepient.setCellValueFactory(new PropertyValueFactory<>("recipientNumber"));
+        name_recepient.setCellValueFactory(new PropertyValueFactory<>("name"));
+        number_resepient.setCellValueFactory(new PropertyValueFactory<>("number"));
         res.setCellValueFactory(new PropertyValueFactory<>("status"));
 
         ArrayList<String> p = DatabaseConnection.getInstance().parcleStatus();
@@ -176,8 +176,8 @@ public class BaseController {
         res.setEditable(true);
         parcels_id_rec.setCellValueFactory(new PropertyValueFactory<>("id"));
         parcels_dta_rec.setCellValueFactory(new PropertyValueFactory<>("data"));
-        name_sender.setCellValueFactory(new PropertyValueFactory<>("nameSenders"));
-        number_sender.setCellValueFactory(new PropertyValueFactory<>("numberSenders"));
+        name_sender.setCellValueFactory(new PropertyValueFactory<>("name"));
+        number_sender.setCellValueFactory(new PropertyValueFactory<>("number"));
         ok.setCellValueFactory(new PropertyValueFactory<>("button"));
 
         // Установка фабрики значений для столбца "ok"

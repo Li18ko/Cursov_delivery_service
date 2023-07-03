@@ -49,12 +49,11 @@ public class BaseManagerController {
     void initialize() throws SQLException, ClassNotFoundException {
         table.setEditable(true);
 
-
-        parcels_id.setCellValueFactory(new PropertyValueFactory<>("parcle_id"));
+        parcels_id.setCellValueFactory(new PropertyValueFactory<>("parcels_id"));
         weight.setCellValueFactory(new PropertyValueFactory<>("weight"));
         typeDelivery.setCellValueFactory(new PropertyValueFactory<>("typeDelivery"));
         data.setCellValueFactory(new PropertyValueFactory<>("data"));
-        center_delivery.setCellValueFactory(new PropertyValueFactory<>("center_delivery"));
+        center_delivery.setCellValueFactory(new PropertyValueFactory<>("delivery_center"));
         ok.setCellValueFactory(new PropertyValueFactory<>("button"));
 
         // Установка фабрики значений для столбца "ok"

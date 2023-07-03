@@ -10,18 +10,20 @@
     <children>
         <AnchorPane layoutX="3.0" layoutY="3.0" prefHeight="644.0" prefWidth="694.0" style="-fx-background-color: E7DBDB;">
          <children>
-            <Button fx:id="exit" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: beige;" text="Выйти" textAlignment="CENTER" />
-            <Button fx:id="registrManager" layoutX="501.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: beige;" text="Зарегистрировать менеджера" />
-            <Button fx:id="registrCourier" layoutX="319.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: beige;" text="Зарегистрировать курьера" />
-            <Button fx:id="nearest_dc" layoutX="94.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: beige;" text="Ближайшие адреса для клиентов" />
+            <Button fx:id="exit" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="12.0" prefWidth="50.0" style="-fx-background-color: beige;" text="Выйти" textAlignment="CENTER" />
+            <Button fx:id="registrManager" layoutX="501.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="182.0" style="-fx-background-color: beige;" text="Зарегистрировать менеджера" />
+            <Button fx:id="registrCourier" layoutX="319.0" layoutY="14.0" mnemonicParsing="false" prefHeight="5.0" prefWidth="163.0" style="-fx-background-color: beige;" text="Зарегистрировать курьера" />
+            <Button fx:id="nearest_dc" layoutX="96.0" layoutY="14.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="198.0" style="-fx-background-color: beige;" text="Ближайшие адреса для клиентов" />
+            <Button fx:id="registrAdmin" layoutX="87.0" layoutY="54.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="216.0" style="-fx-background-color: beige;" text="Зарегистрировать администратора" />
+            <Button fx:id="registrDelivery_center" layoutX="374.0" layoutY="54.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="216.0" style="-fx-background-color: beige;" text="Создать новый центр доставки" />
          </children></AnchorPane>
-        <AnchorPane layoutX="6.0" layoutY="59.0" prefHeight="582.0" prefWidth="686.0" style="-fx-background-color: beige;">
+        <AnchorPane layoutX="6.0" layoutY="90.0" prefHeight="554.0" prefWidth="686.0" style="-fx-background-color: E7DBDB;">
          <children>
-            <ScrollPane prefHeight="289.0" prefWidth="686.0">
+            <ScrollPane layoutY="12.0" prefHeight="270.0" prefWidth="686.0">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="294.0" prefWidth="689.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="257.0" prefWidth="690.0">
                      <children>
-                        <TableView fx:id="manager" prefHeight="290.0" prefWidth="686.0">
+                        <TableView fx:id="manager" layoutY="-3.0" prefHeight="264.0" prefWidth="686.0">
                           <columns>
                             <TableColumn fx:id="name_manager" prefWidth="118.40001994371414" text="Имя" />
                               <TableColumn fx:id="login_manager" prefWidth="134.39997100830078" text="Логин" />
@@ -33,17 +35,17 @@
                   </AnchorPane>
               </content>
             </ScrollPane>
-            <ScrollPane layoutY="291.0" prefHeight="290.0" prefWidth="686.0">
+            <ScrollPane layoutY="284.0" prefHeight="270.0" prefWidth="686.0">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="290.0" prefWidth="687.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="256.0" prefWidth="690.0">
                      <children>
-                        <TableView fx:id="courier" prefHeight="290.0" prefWidth="686.0">
+                        <TableView fx:id="courier" layoutY="1.0" prefHeight="264.0" prefWidth="686.0">
                           <columns>
                             <TableColumn fx:id="name_courier" prefWidth="85.60000163316727" text="Имя" />
                               <TableColumn fx:id="number_courier" prefWidth="130.39997100830078" text="Номер" />
                               <TableColumn fx:id="login_courier" prefWidth="110.40003967285156" text="Логин" />
                               <TableColumn fx:id="center_delivery_courier" prefWidth="239.19998168945312" text="Центр доставки" />
-                              <TableColumn fx:id="ok_courier" prefWidth="107.20001220703125" text="Удалить" />
+                              <TableColumn fx:id="ok_courier" prefWidth="108.7999267578125" text="Удалить" />
                           </columns>
                         </TableView>
                      </children>

@@ -1,37 +1,31 @@
 package com.example.delivery_service;
 
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 
-public class Client {
+public class Client extends User {
     private Button button;
     private ComboBox<String> address_cd;
-    private String address_client;
     private String id;
     private String name;
     private String number;
     private String address;
-    private String login;
-    private String password;
 
     public Client(String name, String number, String address, String login, String password) {
+        super(login, password);
         this.name = name;
         this.number = number;
         this.address = address;
-        this.login = login;
-        this.password = password;
     }
 
-    public Client(String id, String address_client, ComboBox<String> address_cd, Button button) {
+    public Client(String id, String address, ComboBox<String> address_cd, Button button) {
+        super();
         this.id= id;
-        this.address_client = address_client;
+        this.address = address;
         this.address_cd = address_cd;
         this.button = button;
     }
 
-    public Client(String loginText, String passwordText) {
-    }
 
     public Button getButton() {
         return button;
@@ -49,13 +43,6 @@ public class Client {
         this.address_cd = address_cd;
     }
 
-    public String getAddress_client() {
-        return address_client;
-    }
-
-    public void setAddress_client(String address_client) {
-        this.address_client = address_client;
-    }
 
     public String getId() {
         return id;
@@ -89,19 +76,4 @@ public class Client {
         this.address = address;
     }
 
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

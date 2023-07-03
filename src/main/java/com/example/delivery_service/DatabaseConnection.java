@@ -60,11 +60,11 @@ public class DatabaseConnection{
             statement3.executeUpdate();
         }
 
-        public ResultSet getUser(Client client) throws SQLException {
+        public ResultSet getUser(User user) throws SQLException {
             String query = "SELECT * FROM users WHERE login = ? AND password = ?";
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1, client.getLogin());
-            statement.setString(2, client.getPassword());
+            statement.setString(1, user.getLogin());
+            statement.setString(2, user.getPassword());
             ResultSet resultSet = statement.executeQuery();
             return resultSet;
         }
@@ -120,8 +120,8 @@ public class DatabaseConnection{
 
             String query = "SELECT nearest_delivery_centers_id, id FROM clients WHERE name = ? and number = ?";
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1, parcle.getRecipientName());
-            statement.setString(2, parcle.getRecipientNumber());
+            statement.setString(1, parcle.getName());
+            statement.setString(2, parcle.getNumber());
             ResultSet resultSet = statement.executeQuery();
             int delivery_centers_id = 0;
             int recipients = 0;
@@ -711,58 +711,97 @@ public class DatabaseConnection{
 
         }
 
-    public ArrayList<String> clientNearesrCD() throws SQLException {
-        int users_id = getIdUser(getUserLogin());
+        public ArrayList<String> clientNearesrCD() throws SQLException {
+            int users_id = getIdUser(getUserLogin());
 
-        String query = "SELECT id, address FROM clients WHERE nearest_delivery_centers_id is NULL";
-        PreparedStatement statement = connection.prepareStatement(query);
-        ResultSet result = statement.executeQuery();
-        ArrayList<String> p = new ArrayList<String>();
-        while (result.next()){
-            p.add(result.getString(1) + "*" + result.getString(2));
+            String query = "SELECT id, address FROM clients WHERE nearest_delivery_centers_id is NULL";
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet result = statement.executeQuery();
+            ArrayList<String> p = new ArrayList<String>();
+            while (result.next()){
+                p.add(result.getString(1) + "*" + result.getString(2));
+            }
+            return p;
         }
-        return p;
-    }
 
-    public ArrayList<String> nearestCD(String address) throws SQLException {
+        public ArrayList<String> nearestCD(String address) throws SQLException {
 
-        String query9 = "SELECT address FROM delivery_centers WHERE SUBSTRING_INDEX(?, ',', 1) = SUBSTRING_INDEX(address, ',', 1)";
-        PreparedStatement statement9 = connection.prepareStatement(query9);
-        statement9.setString(1, address);
-        ResultSet resultSet9 = statement9.executeQuery();
-
-        ArrayList<String> p = new ArrayList<String>();
-        while (resultSet9.next()){
-            p.add(resultSet9.getString(1));
-        }
-        return p;
-    }
-
-        public void updateClient(String id, String address) throws SQLException {
-            int id_ = Integer.parseInt(id);
-
-            String query9 = "SELECT id FROM delivery_centers WHERE address = ?";
+            String query9 = "SELECT address FROM delivery_centers WHERE SUBSTRING_INDEX(?, ',', 1) = SUBSTRING_INDEX(address, ',', 1)";
             PreparedStatement statement9 = connection.prepareStatement(query9);
             statement9.setString(1, address);
             ResultSet resultSet9 = statement9.executeQuery();
-            int delivery_centers_id = 0;
-            if (resultSet9.next()){
-                delivery_centers_id = resultSet9.getInt(1);}
 
-
-
-            String query6 = "UPDATE clients SET nearest_delivery_centers_id = ? WHERE id = ?";
-            PreparedStatement statement6 = connection.prepareStatement(query6);
-            statement6.setInt(1, delivery_centers_id);
-            statement6.setInt(2, id_);
-            statement6.executeUpdate();
+            ArrayList<String> p = new ArrayList<String>();
+            while (resultSet9.next()){
+                p.add(resultSet9.getString(1));
+            }
+            return p;
         }
 
-    public boolean clientNull() throws SQLException {
-        String query = "SELECT users.id FROM users JOIN clients on clients.users_id = users.id WHERE nearest_delivery_centers_id is NULL";
+            public void updateClient(String id, String address) throws SQLException {
+                int id_ = Integer.parseInt(id);
+
+                String query9 = "SELECT id FROM delivery_centers WHERE address = ?";
+                PreparedStatement statement9 = connection.prepareStatement(query9);
+                statement9.setString(1, address);
+                ResultSet resultSet9 = statement9.executeQuery();
+                int delivery_centers_id = 0;
+                if (resultSet9.next()){
+                    delivery_centers_id = resultSet9.getInt(1);}
+
+
+
+                String query6 = "UPDATE clients SET nearest_delivery_centers_id = ? WHERE id = ?";
+                PreparedStatement statement6 = connection.prepareStatement(query6);
+                statement6.setInt(1, delivery_centers_id);
+                statement6.setInt(2, id_);
+                statement6.executeUpdate();
+            }
+
+        public boolean clientNull() throws SQLException {
+            String query = "SELECT users.id FROM users JOIN clients on clients.users_id = users.id WHERE nearest_delivery_centers_id is NULL";
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet result = statement.executeQuery();
+            return result.next() && result.getInt(1) == getIdUser(getUserLogin());
+        }
+
+        public void registerAdmin(Admin admin) throws SQLException {
+            String query = "INSERT INTO users(login, password) VALUES (?, ?)";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, admin.getLogin());
+            statement.setString(2, admin.getPassword());
+            statement.executeUpdate();
+
+            int idUser = getIdUser(admin.getLogin());
+
+
+            String query2 = "INSERT INTO admins(users_id, name) VALUES " +
+                    "(?, ?)";
+
+            PreparedStatement statement2 = connection.prepareStatement(query2);
+            statement2.setInt(1, idUser);
+            statement2.setString(2, admin.getName());
+            statement2.executeUpdate();
+
+
+            String query3 = "INSERT INTO users_roles(roles_id, users_id) VALUES " +
+                    "(?, ?)";
+
+            PreparedStatement statement3 = connection.prepareStatement(query3);
+            statement3.setInt(1, 4);
+            statement3.setInt(2, idUser);
+
+            statement3.executeUpdate();
+        }
+
+    public void createCenter(Delivery_center delivery_center) throws SQLException {
+        String query = "INSERT INTO delivery_centers(name, address) VALUES (?, ?)";
         PreparedStatement statement = connection.prepareStatement(query);
-        ResultSet result = statement.executeQuery();
-        return result.next() && result.getInt(1) == getIdUser(getUserLogin());
+        statement.setString(1, delivery_center.getName());
+        statement.setString(2, delivery_center.getAddress());
+        statement.executeUpdate();
+
     }
+
 
 }

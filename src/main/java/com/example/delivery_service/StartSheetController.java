@@ -9,13 +9,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
 public class StartSheetController {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
     @FXML
     private Button entry;
 
@@ -33,7 +26,7 @@ public class StartSheetController {
         registration.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Transition.changeScene(event, "registration.fxml", "Регистрация");
+                Transition.changeScene(event, "registrationClient.fxml", "Регистрация");
             }
         });
     }

@@ -17,44 +17,50 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class BaseAdminController {
 
     @FXML
-    private TableColumn<informAdmin, String> center_delivery_courier;
+    private TableColumn<Admin, String> center_delivery_courier;
 
     @FXML
-    private TableColumn<informAdmin, String> center_delivery_manager;
+    private TableColumn<Admin, String> center_delivery_manager;
 
     @FXML
-    private TableView<informAdmin> courier;
+    private TableView<Admin> courier;
 
     @FXML
     private Button exit;
 
     @FXML
-    private TableColumn<informAdmin, String> login_courier;
+    private TableColumn<Admin, String> login_courier;
 
     @FXML
-    private TableColumn<informAdmin, String> login_manager;
+    private TableColumn<Admin, String> login_manager;
 
     @FXML
-    private TableView<informAdmin> manager;
+    private TableView<Admin> manager;
 
     @FXML
-    private TableColumn<informAdmin, String> name_courier;
+    private TableColumn<Admin, String> name_courier;
 
     @FXML
-    private TableColumn<informAdmin, String> name_manager;
+    private TableColumn<Admin, String> name_manager;
 
 
     @FXML
-    private TableColumn<informAdmin, String> number_courier;;
+    private TableColumn<Admin, String> number_courier;;
 
     @FXML
-    private TableColumn<informAdmin, Button> ok_courier;
+    private TableColumn<Admin, Button> ok_courier;
 
     @FXML
-    private TableColumn<informAdmin, Button> ok_manager;
+    private TableColumn<Admin, Button> ok_manager;
 
     @FXML
     private Button nearest_dc;
+
+    @FXML
+    private Button registrAdmin;
+
+    @FXML
+    private Button registrDelivery_center;
 
     @FXML
     private Button registrCourier;
@@ -68,14 +74,14 @@ public class BaseAdminController {
         manager.setEditable(true);
         courier.setEditable(true);
 
-        name_manager.setCellValueFactory(new PropertyValueFactory<>("name_manager"));
-        login_manager.setCellValueFactory(new PropertyValueFactory<>("login_manager"));
-        center_delivery_manager.setCellValueFactory(new PropertyValueFactory<>("center_delivery_manager"));
+        name_manager.setCellValueFactory(new PropertyValueFactory<>("name"));
+        login_manager.setCellValueFactory(new PropertyValueFactory<>("login"));
+        center_delivery_manager.setCellValueFactory(new PropertyValueFactory<>("center_delivery"));
         ok_manager.setCellValueFactory(new PropertyValueFactory<>("button"));
 
         // Установка фабрики значений для столбца "ok"
         ok_manager.setCellFactory(column -> {
-            return new TableCell<informAdmin, Button>() {
+            return new TableCell<Admin, Button>() {
                 @Override
                 protected void updateItem(Button item, boolean empty) {
                     super.updateItem(item, empty);
@@ -88,15 +94,15 @@ public class BaseAdminController {
             };
         });
 
-        name_courier.setCellValueFactory(new PropertyValueFactory<>("name_courier"));
-        number_courier.setCellValueFactory(new PropertyValueFactory<>("number_courier"));
-        login_courier.setCellValueFactory(new PropertyValueFactory<>("login_courier"));
-        center_delivery_courier.setCellValueFactory(new PropertyValueFactory<>("center_delivery_courier"));
+        name_courier.setCellValueFactory(new PropertyValueFactory<>("name"));
+        number_courier.setCellValueFactory(new PropertyValueFactory<>("number"));
+        login_courier.setCellValueFactory(new PropertyValueFactory<>("login"));
+        center_delivery_courier.setCellValueFactory(new PropertyValueFactory<>("center_delivery"));
         ok_courier.setCellValueFactory(new PropertyValueFactory<>("button"));
 
         // Установка фабрики значений для столбца "ok"
         ok_courier.setCellFactory(column -> {
-            return new TableCell<informAdmin, Button>() {
+            return new TableCell<Admin, Button>() {
                 @Override
                 protected void updateItem(Button item, boolean empty) {
                     super.updateItem(item, empty);
@@ -115,6 +121,13 @@ public class BaseAdminController {
             @Override
             public void handle(ActionEvent event) {
                 Transition.changeScene(event, "registrationCourier.fxml", "ADMIN");
+
+            }
+        });
+        registrAdmin.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Transition.changeScene(event, "registrationAdmin.fxml", "ADMIN");
 
             }
         });
@@ -141,6 +154,13 @@ public class BaseAdminController {
 
             }
         });
+        registrDelivery_center.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Transition.changeScene(event, "createCenter.fxml", "ADMIN");
+
+            }
+        });
 
 
 
@@ -149,7 +169,7 @@ public class BaseAdminController {
 
     private void dataADMIN() throws SQLException, ClassNotFoundException {
         ArrayList<String> p = DatabaseConnection.getInstance().adminCourier();
-        ObservableList<informAdmin> datas = FXCollections.observableArrayList();
+        ObservableList<Admin> datas = FXCollections.observableArrayList();
         for (int i = 0; i < p.size(); i++){
             String str = p.get(i);
             String[] s = str.split("\\*");
@@ -165,12 +185,12 @@ public class BaseAdminController {
                     }
                 }
             });
-            datas.add(new informAdmin(s[0], s[1], s[2], s[3], button));
+            datas.add(new Admin(s[0], s[1], s[2], s[3], button));
 
         }
 
         ArrayList<String> q = DatabaseConnection.getInstance().adminManager();
-        ObservableList<informAdmin> data = FXCollections.observableArrayList();
+        ObservableList<Admin> data = FXCollections.observableArrayList();
         for (int i = 0; i < q.size(); i++){
             String str = q.get(i);
             String[] s = str.split("\\*");
@@ -186,7 +206,7 @@ public class BaseAdminController {
                     }
                 }
             });
-            data.add(new informAdmin(s[0], s[1], s[2], button));
+            data.add(new Admin(s[0], s[1], s[2], button));
         }
 
         courier.setItems(datas);

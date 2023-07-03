@@ -3,29 +3,22 @@ package com.example.delivery_service;
 import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Label;
 
-public class RegistrationController {
-
+public class RegistrationAdminController {
     @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
-    private TextField address;
-
-    @FXML
-    private Label warningPassword;
+    private Label advertisement;
 
     @FXML
     private Button backRegistration;
@@ -37,21 +30,26 @@ public class RegistrationController {
     private TextField name;
 
     @FXML
-    private TextField number;
-
-    @FXML
     private PasswordField passwordRegistration;
 
     @FXML
     private Button registration;
 
+    @FXML
+    private Label warningLogin;
+
+    @FXML
+    private Label warningName;
+
+    @FXML
+    private Label warningPassword;
 
     @FXML
     void initialize() throws SQLException, ClassNotFoundException {
         backRegistration.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Transition.changeScene(event, "startSheet.fxml", "Client");
+                Transition.changeScene(event, "baseAdmin.fxml", "ADMIN");
             }
         });
 
@@ -59,27 +57,13 @@ public class RegistrationController {
             @Override
             public void handle(ActionEvent event) {
                 try {
-                    if ((name.getText() == "" || name.getText().length() > 30) || (number.getText() == "" || number.getText().length() != 12 ||
-                            (number.getText().charAt(0) != '+' && number.getText().charAt(1) != '7') ||
-                            DatabaseConnection.getInstance().checkNumber(number.getText())) || (address.getText() == "" ||
-                            address.getText().length() > 100 || address.getText().length() < 15) || (loginRegistration.getText() == ""
+                    if ((name.getText() == "" || name.getText().length() > 30) || (loginRegistration.getText() == ""
                             || loginRegistration.getText().length() > 20 || DatabaseConnection.getInstance().isLoginExists(loginRegistration.getText()))
-                            || (passwordRegistration.getText() == "" || passwordRegistration.getText().length() > 30 || passwordRegistration.getText().length() < 6)) {
-
+                            || (passwordRegistration.getText() == "" || passwordRegistration.getText().length() > 30
+                            || passwordRegistration.getText().length() < 6)){
 
                         if (name.getText() == "" || name.getText().length() > 30)
                             name.setText("Имя некорректное");
-
-                        if (number.getText() == "" || number.getText().length() != 12 ||
-                                (number.getText().charAt(0) != '+' && number.getText().charAt(1) != '7') ||
-                                DatabaseConnection.getInstance().checkNumber(number.getText())){
-                            if (DatabaseConnection.getInstance().checkNumber(number.getText())) {
-                                number.setText("Номер занят");
-                            } else number.setText("Номер некорректный");
-                        }
-
-                        if (address.getText() == "" || address.getText().length() > 100 || address.getText().length() < 15)
-                            address.setText("Адрес некорректный");
 
                         if (loginRegistration.getText() == "" || loginRegistration.getText().length() > 20 || DatabaseConnection.getInstance().isLoginExists(loginRegistration.getText())) {
                             if (DatabaseConnection.getInstance().isLoginExists(loginRegistration.getText())) {
@@ -93,8 +77,8 @@ public class RegistrationController {
                     }
 
                     else {
-                        registerUser();
-                        Transition.changeScene(event, "startSheet.fxml", "Client");
+                        registerAdmin();
+                        Transition.changeScene(event, "baseAdmin.fxml", "ADMIN");
 
                     }
                 } catch (SQLException e) {
@@ -109,18 +93,18 @@ public class RegistrationController {
         });
     }
 
-    private void registerUser() throws SQLException, ClassNotFoundException, NoSuchAlgorithmException {
+    private void registerAdmin() throws SQLException, ClassNotFoundException, NoSuchAlgorithmException {
         String nameText = name.getText();
-        String numberText = number.getText();
-        String addressText = address.getText();
         String loginRegistrationText = loginRegistration.getText();
         String passwordRegistrationText = passwordRegistration.getText();
 
         String hashedPassword = PasswordHasher.hashPassword(passwordRegistrationText);
 
-        Client client = new Client(nameText, numberText, addressText, loginRegistrationText, hashedPassword);
+        Admin admin = new Admin(nameText, loginRegistrationText, hashedPassword);
 
-        DatabaseConnection.getInstance().registerUser(client);
+        DatabaseConnection.getInstance().registerAdmin(admin);
 
     }
+
+
 }

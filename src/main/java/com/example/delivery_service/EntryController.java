@@ -1,11 +1,8 @@
 package com.example.delivery_service;
 
-import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
-import java.util.prefs.Preferences;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -16,7 +13,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class EntryController {
-
     @FXML
     private Button back;
 
@@ -64,7 +60,7 @@ public class EntryController {
                     if(loginUser(loginText, hashedPassword)){
                         userLogin = login.getText();
                         if (getRole() == 1){
-                            Transition.changeScene(event, "base.fxml", "Client");
+                            Transition.changeScene(event, "baseClient.fxml", "Client");
                         }
                         else if (getRole() == 2){
                             Transition.changeScene(event, "baseManager.fxml", "Manager");
@@ -93,10 +89,10 @@ public class EntryController {
 
     private boolean loginUser(String loginText, String passwordText) throws SQLException, ClassNotFoundException {
         boolean flag = false;
-        Client client = new Client(loginText, passwordText);
-        client.setLogin(loginText);
-        client.setPassword(passwordText);
-        ResultSet resultSet = DatabaseConnection.getInstance().getUser(client);
+        User user = new User(loginText, passwordText);
+        user.setLogin(loginText);
+        user.setPassword(passwordText);
+        ResultSet resultSet = DatabaseConnection.getInstance().getUser(user);
         if(resultSet.next()) {
             flag = true;
         }
