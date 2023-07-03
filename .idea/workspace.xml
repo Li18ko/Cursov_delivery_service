@@ -4,12 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5deec214-f450-428d-adf7-40b9644e7c48" name="Changes" comment="Удаление аккаунтов курьеров и менеджеров с аккаунта АДМИНА">
+    <list default="true" id="5deec214-f450-428d-adf7-40b9644e7c48" name="Changes" comment="Удаление аккаунтов курьеров и менеджеров с аккаунта АДМИНА (рабочая)">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/nearestDcAdminController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseAdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseCourierController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseCourierController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseManagerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Courier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Courier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/DatabaseConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/EntryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/EntryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/nearestDcAdmin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/base.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/base.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/nearestDcAdmin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/nearestDcAdmin.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -213,7 +218,14 @@
       <option name="project" value="LOCAL" />
       <updated>1688334156254</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Удаление аккаунтов курьеров и менеджеров с аккаунта АДМИНА (рабочая)">
+      <created>1688335573362</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1688335573362</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -231,7 +243,8 @@
     <MESSAGE value="Изменение данных у клиента ( возможность редактировать данные)" />
     <MESSAGE value="Замена нескольких классов на конструкторы для заполнения таблиц" />
     <MESSAGE value="Удаление аккаунтов курьеров и менеджеров с аккаунта АДМИНА" />
-    <option name="LAST_COMMIT_MESSAGE" value="Удаление аккаунтов курьеров и менеджеров с аккаунта АДМИНА" />
+    <MESSAGE value="Удаление аккаунтов курьеров и менеджеров с аккаунта АДМИНА (рабочая)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Удаление аккаунтов курьеров и менеджеров с аккаунта АДМИНА (рабочая)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -305,6 +318,26 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/example/delivery_service/DatabaseConnection.java</url>
           <line>365</line>
           <option name="timeStamp" value="103" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/delivery_service/nearestDcAdminController.java</url>
+          <line>98</line>
+          <option name="timeStamp" value="120" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/delivery_service/nearestDcAdminController.java</url>
+          <line>108</line>
+          <option name="timeStamp" value="121" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/delivery_service/nearestDcAdminController.java</url>
+          <line>122</line>
+          <option name="timeStamp" value="122" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/delivery_service/nearestDcAdminController.java</url>
+          <line>139</line>
+          <option name="timeStamp" value="123" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

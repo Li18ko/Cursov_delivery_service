@@ -6,9 +6,9 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="700.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.delivery_service.nearestDcAdmin">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="700.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.delivery_service.nearestDcAdminController">
     <children>
-        <AnchorPane layoutX="3.0" layoutY="3.0" prefHeight="644.0" prefWidth="694.0" style="-fx-background-color: E7DBDB;">
+        <AnchorPane layoutX="2.0" layoutY="3.0" prefHeight="644.0" prefWidth="694.0" style="-fx-background-color: E7DBDB;">
          <children>
             <Button fx:id="exit" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: beige;" text="Выйти" textAlignment="CENTER" />
          </children></AnchorPane>
@@ -18,13 +18,12 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="583.0" prefWidth="688.0">
                      <children>
-                        <TableView fx:id="table" prefHeight="582.0" prefWidth="686.0">
+                        <TableView fx:id="table" layoutX="1.0" prefHeight="582.0" prefWidth="686.0">
                           <columns>
-                            <TableColumn fx:id="parcels_id" prefWidth="35.19998103380203" text="id_посылки" />
-                            <TableColumn fx:id="name_recepient" prefWidth="94.40002822875977" text="Имя получателя" />
-                              <TableColumn fx:id="number_recepient" prefWidth="93.5999755859375" text="Номер получателя" />
-                              <TableColumn fx:id="address_recipient" prefWidth="335.99998474121094" text="Адрес" />
-                              <TableColumn fx:id="ok" prefWidth="116.7999267578125" text="Подтвердить" />
+                            <TableColumn fx:id="id" minWidth="0.0" prefWidth="25.600007355213165" text="id" />
+                              <TableColumn fx:id="address_client" prefWidth="268.80009841918945" text="Адрес клиента" />
+                            <TableColumn fx:id="address_cd" minWidth="0.0" prefWidth="290.3999328613281" text="Адрес ближайшего цд" />
+                              <TableColumn fx:id="save" prefWidth="76.79998779296875" text="Сохранить" />
                           </columns>
                         </TableView>
                      </children>

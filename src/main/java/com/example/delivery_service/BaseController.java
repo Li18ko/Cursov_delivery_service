@@ -25,7 +25,10 @@ public class BaseController {
     private Button exit;
 
     @FXML
-    private Label id;
+    private Label clientNull;
+
+    @FXML
+    private Label error;
 
     @FXML
     private TableColumn<Parcle, String> name_recepient;
@@ -105,8 +108,15 @@ public class BaseController {
                     ||  recipientNumber.getText().length() != 12 || (recipientNumber.getText().charAt(0) != '+'
                             && recipientNumber.getText().charAt(1) != '7') ||
                     !DatabaseConnection.getInstance().checkNumberName(recipientNumber.getText(), recipientName.getText()) ||
-                                recipientName.getText().length() > 30 || DatabaseConnection.getInstance().checkLogin(recipientNumber.getText())) {
-                        id.setText("Введены неверные данные");}
+                                recipientName.getText().length() > 30 || DatabaseConnection.getInstance().checkLogin(recipientNumber.getText()) ||
+                    DatabaseConnection.getInstance().clientNull()) {
+                    if (DatabaseConnection.getInstance().clientNull()){
+                        clientNull.setText("Вам еще не присвоили ближайший центр доставки");
+                    }
+                    else
+                       error.setText("Введены неверные данные");
+                    }
+
                     else{
                         makeOrder();
                         Transition.changeScene(event, "base.fxml", "Client");

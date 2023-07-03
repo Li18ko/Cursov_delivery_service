@@ -711,6 +711,58 @@ public class DatabaseConnection{
 
         }
 
+    public ArrayList<String> clientNearesrCD() throws SQLException {
+        int users_id = getIdUser(getUserLogin());
 
+        String query = "SELECT id, address FROM clients WHERE nearest_delivery_centers_id is NULL";
+        PreparedStatement statement = connection.prepareStatement(query);
+        ResultSet result = statement.executeQuery();
+        ArrayList<String> p = new ArrayList<String>();
+        while (result.next()){
+            p.add(result.getString(1) + "*" + result.getString(2));
+        }
+        return p;
+    }
+
+    public ArrayList<String> nearestCD(String address) throws SQLException {
+
+        String query9 = "SELECT address FROM delivery_centers WHERE SUBSTRING_INDEX(?, ',', 1) = SUBSTRING_INDEX(address, ',', 1)";
+        PreparedStatement statement9 = connection.prepareStatement(query9);
+        statement9.setString(1, address);
+        ResultSet resultSet9 = statement9.executeQuery();
+
+        ArrayList<String> p = new ArrayList<String>();
+        while (resultSet9.next()){
+            p.add(resultSet9.getString(1));
+        }
+        return p;
+    }
+
+        public void updateClient(String id, String address) throws SQLException {
+            int id_ = Integer.parseInt(id);
+
+            String query9 = "SELECT id FROM delivery_centers WHERE address = ?";
+            PreparedStatement statement9 = connection.prepareStatement(query9);
+            statement9.setString(1, address);
+            ResultSet resultSet9 = statement9.executeQuery();
+            int delivery_centers_id = 0;
+            if (resultSet9.next()){
+                delivery_centers_id = resultSet9.getInt(1);}
+
+
+
+            String query6 = "UPDATE clients SET nearest_delivery_centers_id = ? WHERE id = ?";
+            PreparedStatement statement6 = connection.prepareStatement(query6);
+            statement6.setInt(1, delivery_centers_id);
+            statement6.setInt(2, id_);
+            statement6.executeUpdate();
+        }
+
+    public boolean clientNull() throws SQLException {
+        String query = "SELECT users.id FROM users JOIN clients on clients.users_id = users.id WHERE nearest_delivery_centers_id is NULL";
+        PreparedStatement statement = connection.prepareStatement(query);
+        ResultSet result = statement.executeQuery();
+        return result.next() && result.getInt(1) == getIdUser(getUserLogin());
+    }
 
 }

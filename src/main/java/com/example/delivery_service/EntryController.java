@@ -93,7 +93,7 @@ public class EntryController {
 
     private boolean loginUser(String loginText, String passwordText) throws SQLException, ClassNotFoundException {
         boolean flag = false;
-        Client client = new Client();
+        Client client = new Client(loginText, passwordText);
         client.setLogin(loginText);
         client.setPassword(passwordText);
         ResultSet resultSet = DatabaseConnection.getInstance().getUser(client);

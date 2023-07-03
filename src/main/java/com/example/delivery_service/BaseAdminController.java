@@ -137,7 +137,7 @@ public class BaseAdminController {
         nearest_dc.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Transition.changeScene(event, "startSheet.fxml", "ADMIN");
+                Transition.changeScene(event, "nearestDcAdmin.fxml", "ADMIN");
 
             }
         });
