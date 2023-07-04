@@ -43,7 +43,10 @@ public class RegistrationClientController {
     private PasswordField passwordRegistration;
 
     @FXML
-    private Button registration;
+    private Button button;
+    @FXML
+    private Label title;
+
 
 
     @FXML
@@ -55,7 +58,7 @@ public class RegistrationClientController {
             }
         });
 
-        registration.setOnAction(new EventHandler<ActionEvent>() {
+        button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 try {

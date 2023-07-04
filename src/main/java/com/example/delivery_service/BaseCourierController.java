@@ -1,9 +1,7 @@
 package com.example.delivery_service;
 
-import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,25 +16,25 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class BaseCourierController {
     @FXML
-    private TableColumn<Courier, String> address_recipient;
+    private TableColumn<InformForCourier, String> address_recipient;
 
     @FXML
     private Button exit;
 
     @FXML
-    private TableColumn<Courier, String> name_recepient;
+    private TableColumn<InformForCourier, String> name_recepient;
 
     @FXML
-    private TableColumn<Courier, String> number_recepient;
+    private TableColumn<InformForCourier, String> number_recepient;
 
     @FXML
-    private TableColumn<Courier, Button> ok;
+    private TableColumn<InformForCourier, Button> ok;
 
     @FXML
-    private TableColumn<Courier, String> parcels_id;
+    private TableColumn<InformForCourier, String> parcels_id;
 
     @FXML
-    private TableView<Courier> table;
+    private TableView<InformForCourier> table;
 
     @FXML
     void initialize() throws SQLException, ClassNotFoundException {
@@ -49,7 +47,7 @@ public class BaseCourierController {
 
         // Установка фабрики значений для столбца "ok"
         ok.setCellFactory(column -> {
-            return new TableCell<Courier, Button>() {
+            return new TableCell<InformForCourier, Button>() {
                 @Override
                 protected void updateItem(Button item, boolean empty) {
                     super.updateItem(item, empty);
@@ -76,31 +74,32 @@ public class BaseCourierController {
     private void dataCourier() throws SQLException, ClassNotFoundException {
 
         ArrayList<String> p = DatabaseConnection.getInstance().dataCourier();
-        ObservableList<Courier> dat = FXCollections.observableArrayList();
+        ObservableList<InformForCourier> dat = FXCollections.observableArrayList();
         for (int i = 0; i < p.size(); i++){
             String str = p.get(i);
             String[] s = str.split("\\*");
             Button button = new Button("Подтвердить");
+            InformForCourier informForCourier = new InformForCourier(s[0], s[1], s[2], s[3], button);
+            dat.add(informForCourier);
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
                     try {
-                        parcelStatus(s[0]);
+                        parcelStatus(informForCourier);
                         dataCourier();
                     } catch (SQLException | ClassNotFoundException e) {
                         e.printStackTrace();
                     }
                 }
             });
-            dat.add(new Courier(s[0], s[1], s[2], s[3], button));
         }
 
         table.setItems(dat);
         table.refresh();
     }
 
-    private void parcelStatus(String parcelId) throws SQLException, ClassNotFoundException {
-        DatabaseConnection.getInstance().parcleStatusCourier(parcelId);
+    private void parcelStatus(InformForCourier informForCourier) throws SQLException, ClassNotFoundException {
+        DatabaseConnection.getInstance().parcleStatusCourier(informForCourier);
     }
 
 }

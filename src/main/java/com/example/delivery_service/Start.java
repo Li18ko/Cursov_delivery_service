@@ -5,13 +5,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class Start extends Application {
+
     @Override
     public void start(Stage stage) throws IOException, SQLException, ClassNotFoundException {
         Parent root = FXMLLoader.load(getClass().getResource("startSheet.fxml"));

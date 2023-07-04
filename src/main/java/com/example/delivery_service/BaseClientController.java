@@ -78,6 +78,8 @@ public class BaseClientController {
     @FXML
     private TextField weight;
 
+
+
     @FXML
     void initialize() throws SQLException, ClassNotFoundException {
 
@@ -165,9 +167,9 @@ public class BaseClientController {
         for (int i = 0; i < p.size(); i++){
             String str = p.get(i);
             String[] s = str.split("\\*");
-            parcels.add(new Parcle(Integer.parseInt(s[0]), s[1], s[2], s[3], s[4]));
+            Parcle parcle = new Parcle(Integer.parseInt(s[0]), s[1], s[2], s[3], s[4]);
+            parcels.add(parcle);
         }
-
 
         sender.setItems(parcels);
     }
@@ -201,18 +203,19 @@ public class BaseClientController {
             String str = p.get(i);
             String[] s = str.split("\\*");
             Button button = new Button("Подтвердить");
+            Parcle parcle = new Parcle(s[0], s[1], s[2], s[3], button);
+            data__.add(parcle);
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
                     try {
-                        parcelStatus(s[0]);
+                        parcelStatus(parcle);
                         recepient_parcle();
                     } catch (SQLException | ClassNotFoundException e) {
                         e.printStackTrace();
                     }
                 }
             });
-                data__.add(new Parcle(s[0], s[1], s[2], s[3], button));
             }
         recep.setItems(data__);
         recep.refresh();
@@ -220,8 +223,8 @@ public class BaseClientController {
     }
 
 
-    private void parcelStatus(String parcelId) throws SQLException, ClassNotFoundException {
-        DatabaseConnection.getInstance().recipientStatusParcle(parcelId);
+    private void parcelStatus(Parcle parcle) throws SQLException, ClassNotFoundException {
+        DatabaseConnection.getInstance().recipientStatusParcle(parcle);
     }
 
 }

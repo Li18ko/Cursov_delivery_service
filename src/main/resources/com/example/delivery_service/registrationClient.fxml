@@ -11,7 +11,7 @@
     <children>
         <AnchorPane layoutX="20.0" layoutY="20.0" prefHeight="610.0" prefWidth="660.0" style="-fx-background-color: E7DBDB;">
          <children>
-            <Button fx:id="registration" layoutX="253.0" layoutY="447.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="166.0" style="-fx-background-color: beige;" text="Зарегистрироваться">
+            <Button fx:id="button" layoutX="253.0" layoutY="447.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="166.0" style="-fx-background-color: beige;" text="Зарегистрироваться">
                <font>
                   <Font size="14.0" />
                </font>
@@ -23,7 +23,7 @@
             </Button>
             <PasswordField fx:id="passwordRegistration" layoutX="124.0" layoutY="369.0" prefHeight="38.0" prefWidth="194.0" promptText="Пароль" />
             <TextField fx:id="loginRegistration" layoutX="125.0" layoutY="315.0" prefHeight="38.0" prefWidth="193.0" promptText="Логин" />
-                <Label layoutX="222.0" layoutY="56.0" style="-fx-background-color: E7DBDB;" text="Регистрация" textFill="#512929">
+                <Label fx:id="title" layoutX="222.0" layoutY="56.0" style="-fx-background-color: E7DBDB;" text="Регистрация" textFill="#512929">
                     <font>
                         <Font size="40.0" />
                     </font>

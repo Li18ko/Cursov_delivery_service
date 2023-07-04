@@ -5,13 +5,8 @@ public class Delivery_center {
     private String name;
     private String address;
 
-    public Delivery_center(int id, String name, String address) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-    }
 
-    public Delivery_center(String name, String address) {
+    public Delivery_center (String name, String address) {
         this.name = name;
         this.address = address;
     }

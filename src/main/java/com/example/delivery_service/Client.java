@@ -18,14 +18,6 @@ public class Client extends User {
         this.address = address;
     }
 
-    public Client(String id, String address, ComboBox<String> address_cd, Button button) {
-        super();
-        this.id= id;
-        this.address = address;
-        this.address_cd = address_cd;
-        this.button = button;
-    }
-
 
     public Button getButton() {
         return button;

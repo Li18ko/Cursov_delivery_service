@@ -305,8 +305,8 @@ public class DatabaseConnection{
             return p;
         }
 
-        public void parcleStatusManager(String id) throws SQLException {
-            int id_ = Integer.parseInt(id);
+        public void parcleStatusManager(InformForManager informForManager) throws SQLException {
+            int id_ = Integer.parseInt(informForManager.getParcels_id());
             String query6 = "UPDATE parcels SET status = 'Отправлена' WHERE id = ?";
             PreparedStatement statement6 = connection.prepareStatement(query6);
             statement6.setInt(1, id_);
@@ -352,8 +352,8 @@ public class DatabaseConnection{
             statement3.executeUpdate();
         }
 
-        public void parcleStatusCourier(String id) throws SQLException {
-            int id_ = Integer.parseInt(id);
+        public void parcleStatusCourier(InformForCourier informForCourier) throws SQLException {
+            int id_ = Integer.parseInt(informForCourier.getParcels_id());
             String query6 = "UPDATE parcels SET status = 'У курьера' WHERE id = ?";
             PreparedStatement statement6 = connection.prepareStatement(query6);
             statement6.setInt(1, id_);
@@ -495,8 +495,8 @@ public class DatabaseConnection{
             return p;
         }
 
-        public void recipientStatusParcle(String id) throws SQLException {
-            int id_ = Integer.parseInt(id);
+        public void recipientStatusParcle(Parcle parcle) throws SQLException {
+            int id_ = parcle.getId();
             String query6 = "UPDATE parcels SET status = 'Получена' WHERE id = ?";
             PreparedStatement statement6 = connection.prepareStatement(query6);
             statement6.setInt(1, id_);
@@ -559,7 +559,7 @@ public class DatabaseConnection{
             return resultSet.next() && resultSet.getInt(1) > 0;
         }
 
-        public void updateUser(Client client) throws SQLException {
+        public void updateUser(UpdateClient updateClient) throws SQLException {
             int id_user = getIdUser(getUserLogin());
 
             String query10 = "SELECT clients.id FROM clients JOIN users on clients.users_id = users.id WHERE users.id = ?";
@@ -581,21 +581,21 @@ public class DatabaseConnection{
 
             String query = "UPDATE users SET login = ?, password = ? WHERE id = ?";
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1, client.getLogin());
-            statement.setString(2, client.getPassword());
+            statement.setString(1, updateClient.getLogin());
+            statement.setString(2, updateClient.getPassword());
             statement.setInt(3, id_user);
             statement.executeUpdate();
 
-            String new_address = client.getAddress();
+            String new_address = updateClient.getAddress();
 
             if (!address.equals(new_address)){
                 String query2 = "UPDATE clients SET name = ?, number = ?, address = ?, " +
                         "nearest_delivery_centers_id = NULL WHERE id = ? and users_id = ? ";
 
                 PreparedStatement statement2 = connection.prepareStatement(query2);
-                statement2.setString(1, client.getName());
-                statement2.setString(2, client.getNumber());
-                statement2.setString(3, client.getAddress());
+                statement2.setString(1, updateClient.getName());
+                statement2.setString(2, updateClient.getNumber());
+                statement2.setString(3, updateClient.getAddress());
                 statement2.setInt(4, client_id);
                 statement2.setInt(5, id_user);
                 statement2.executeUpdate();
@@ -605,9 +605,9 @@ public class DatabaseConnection{
                         "WHERE id = ? and users_id = ? ";
 
                 PreparedStatement statement2 = connection.prepareStatement(query2);
-                statement2.setString(1, client.getName());
-                statement2.setString(2, client.getNumber());
-                statement2.setString(3, client.getAddress());
+                statement2.setString(1, updateClient.getName());
+                statement2.setString(2, updateClient.getNumber());
+                statement2.setString(3, updateClient.getAddress());
                 statement2.setInt(4, client_id);
                 statement2.setInt(5, id_user);
                 statement2.executeUpdate();
@@ -626,8 +626,8 @@ public class DatabaseConnection{
         }
 
 
-        public void deleteCourier(String login) throws SQLException {
-            int id_user = getIdUser(login);
+        public void deleteCourier(InformForAdmin informForAdmin) throws SQLException {
+            int id_user = getIdUser(informForAdmin.getLogin());
 
             String query10 = "SELECT couriers.id, couriers.delivery_centers_id FROM couriers JOIN users on " +
                     "couriers.users_id = users.id WHERE users.id = ?";
@@ -681,8 +681,8 @@ public class DatabaseConnection{
 
         }
 
-        public void deleteManager(String login) throws SQLException {
-            int id_user = getIdUser(login);
+        public void deleteManager(InformForAdmin informForAdmin) throws SQLException {
+            int id_user = getIdUser(informForAdmin.getLogin());
 
             String query10 = "SELECT managers.id FROM managers JOIN users on " +
                     "managers.users_id = users.id WHERE users.id = ?";
@@ -738,12 +738,12 @@ public class DatabaseConnection{
             return p;
         }
 
-            public void updateClient(String id, String address) throws SQLException {
-                int id_ = Integer.parseInt(id);
+            public void updateNearestCenterDeliveryClient(InformNearestDeliveryCenter informNearestDeliveryCenter) throws SQLException {
+                int id_ = Integer.parseInt(informNearestDeliveryCenter.getId());
 
                 String query9 = "SELECT id FROM delivery_centers WHERE address = ?";
                 PreparedStatement statement9 = connection.prepareStatement(query9);
-                statement9.setString(1, address);
+                statement9.setString(1, informNearestDeliveryCenter.getAddress_cd().getValue());
                 ResultSet resultSet9 = statement9.executeQuery();
                 int delivery_centers_id = 0;
                 if (resultSet9.next()){

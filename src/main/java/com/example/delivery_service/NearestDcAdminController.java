@@ -14,22 +14,22 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class NearestDcAdminController {
 
     @FXML
-    private TableColumn<Client, ComboBox<String>> address_cd;
+    private TableColumn<InformNearestDeliveryCenter, ComboBox<String>> address_cd;
 
     @FXML
-    private TableColumn<Client, String> address_client;
+    private TableColumn<InformNearestDeliveryCenter, String> address_client;
 
     @FXML
     private Button exit;
 
     @FXML
-    private TableColumn<Client, String> id;
+    private TableColumn<InformNearestDeliveryCenter, String> id;
 
     @FXML
-    private TableColumn<Client, Button> save;
+    private TableColumn<InformNearestDeliveryCenter, Button> save;
 
     @FXML
-    private TableView<Client> table;
+    private TableView<InformNearestDeliveryCenter> table;
 
     @FXML
     private Button button;
@@ -47,7 +47,7 @@ public class NearestDcAdminController {
 
         // Установка фабрики значений для столбца "ok"
         save.setCellFactory(column -> {
-            return new TableCell<Client, Button>() {
+            return new TableCell<InformNearestDeliveryCenter, Button>() {
                 @Override
                 protected void updateItem(Button item, boolean empty) {
                     super.updateItem(item, empty);
@@ -60,13 +60,9 @@ public class NearestDcAdminController {
             };
         });
 
-        id.setCellValueFactory(new PropertyValueFactory<>("id"));
-        address_client.setCellValueFactory(new PropertyValueFactory<>("address"));
-        address_cd.setCellValueFactory(new PropertyValueFactory<>("address_cd"));
-
         // Установка фабрики значений для столбца "address_cd"
         address_cd.setCellFactory(column -> {
-            return new TableCell<Client, ComboBox<String>>() {
+            return new TableCell<InformNearestDeliveryCenter, ComboBox<String>>() {
                 @Override
                 protected void updateItem(ComboBox<String> item, boolean empty) {
                     super.updateItem(item, empty);
@@ -95,7 +91,7 @@ public class NearestDcAdminController {
 
     private void clientNearesrCD() throws SQLException, ClassNotFoundException {
         ArrayList<String> p = DatabaseConnection.getInstance().clientNearesrCD();
-        ObservableList<Client> items = FXCollections.observableArrayList();
+        ObservableList<InformNearestDeliveryCenter> items = FXCollections.observableArrayList();
         for (int i = 0; i < p.size(); i++){
             String str = p.get(i);
             String[] s = str.split("\\*");
@@ -114,11 +110,14 @@ public class NearestDcAdminController {
 
 
             Button button = new Button("Сохранить");
+            InformNearestDeliveryCenter informNearestDeliveryCenter = new InformNearestDeliveryCenter(s[0], s[1], comboBox, button);
+
+            items.add(informNearestDeliveryCenter);
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
                     try {
-                        saveClient(s[0], comboBox.getValue());
+                        updateNearestCenterDeliveryClient(informNearestDeliveryCenter);
                         clientNearesrCD();
                     } catch (SQLException | ClassNotFoundException e) {
                         e.printStackTrace();
@@ -126,7 +125,6 @@ public class NearestDcAdminController {
                 }
             });
 
-            items.add(new Client(s[0], s[1], comboBox, button));
         }
 
         table.setItems(items);
@@ -134,8 +132,8 @@ public class NearestDcAdminController {
 
     }
 
-    private void saveClient(String id, String address) throws SQLException, ClassNotFoundException {
-        DatabaseConnection.getInstance().updateClient(id, address);
+    private void updateNearestCenterDeliveryClient(InformNearestDeliveryCenter informNearestDeliveryCenter) throws SQLException, ClassNotFoundException {
+        DatabaseConnection.getInstance().updateNearestCenterDeliveryClient(informNearestDeliveryCenter);
     }
 
 }

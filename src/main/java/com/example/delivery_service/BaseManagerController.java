@@ -20,29 +20,29 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class BaseManagerController {
 
     @FXML
-    private TableColumn<Manager, String> center_delivery;
+    private TableColumn<InformForManager, String> center_delivery;
 
     @FXML
-    private TableColumn<Manager, String> data;
+    private TableColumn<InformForManager, String> data;
 
     @FXML
     private Button exit;
 
     @FXML
-    private TableColumn<Manager, Button> ok;
+    private TableColumn<InformForManager, Button> ok;
 
 
     @FXML
-    private TableColumn<Manager, String> parcels_id;
+    private TableColumn<InformForManager, String> parcels_id;
 
     @FXML
-    private TableView<Manager> table;
+    private TableView<InformForManager> table;
 
     @FXML
-    private TableColumn<Manager, String> typeDelivery;
+    private TableColumn<InformForManager, String> typeDelivery;
 
     @FXML
-    private TableColumn<Manager, String> weight;
+    private TableColumn<InformForManager, String> weight;
     private Button button;
 
     @FXML
@@ -58,7 +58,7 @@ public class BaseManagerController {
 
         // Установка фабрики значений для столбца "ok"
         ok.setCellFactory(column -> {
-            return new TableCell<Manager, Button>() {
+            return new TableCell<InformForManager, Button>() {
                 @Override
                 protected void updateItem(Button item, boolean empty) {
                     super.updateItem(item, empty);
@@ -85,31 +85,32 @@ public class BaseManagerController {
 
     private void dataManager() throws SQLException, ClassNotFoundException {
         ArrayList<String> p = DatabaseConnection.getInstance().dataManager();
-        ObservableList<Manager> datas = FXCollections.observableArrayList();
+        ObservableList<InformForManager> datas = FXCollections.observableArrayList();
         for (int i = 0; i < p.size(); i++){
             String str = p.get(i);
             String[] s = str.split("\\*");
             Button button = new Button("Подтвердить");
+            InformForManager informForManager = new InformForManager(s[0], s[1], s[2], s[3], s[4], button);
+            datas.add(informForManager);
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
                     try {
-                        parcelStatus(s[0]);
+                        parcelStatus(informForManager);
                         dataManager();
                     } catch (SQLException | ClassNotFoundException e) {
                         e.printStackTrace();
                     }
                 }
             });
-            datas.add(new Manager(s[0], s[1], s[2], s[3], s[4], button));
         }
 
         table.setItems(datas);
         table.refresh();
     }
 
-    private void parcelStatus(String parcelId) throws SQLException, ClassNotFoundException {
-        DatabaseConnection.getInstance().parcleStatusManager(parcelId);
+    private void parcelStatus(InformForManager informForManager) throws SQLException, ClassNotFoundException {
+        DatabaseConnection.getInstance().parcleStatusManager(informForManager);
     }
 
 

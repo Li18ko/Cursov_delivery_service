@@ -1,35 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="delivery_service:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5deec214-f450-428d-adf7-40b9644e7c48" name="Changes" comment="Присвоение ближайшего цд клиенту через аккаунт администратора">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Admin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/CreateCenterController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/RegistrationAdminController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/User.java" afterDir="false" />
+    <list default="true" id="5deec214-f450-428d-adf7-40b9644e7c48" name="Changes" comment="Регистрация админов, добавление новых центров доставок. Клиенты, курьеры, менеджеры и админы наследуются от Пользователя">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/InformForAdmin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/InformForCourier.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/InformForManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/InformNearestDeliveryCenter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/UpdateClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Admin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseAdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseClientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseClientController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseCourierController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseCourierController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/BaseManagerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Courier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Courier.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/DatabaseConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Delivery_center.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Delivery_center.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/EntryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/EntryController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Parcle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Parcle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/RegistrationClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/StartSheetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/StartSheetController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/UpdateConroller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/UpdateConroller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/informAdmin.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/nearestDcAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/NearestDcAdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/base.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/baseClient.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/baseAdmin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/baseAdmin.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/nearestDcAdmin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/nearestDcAdmin.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/registration.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/registrationClient.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/NearestDcAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/NearestDcAdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/RegistrationClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/RegistrationClientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Start.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Start.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/StartSheetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/StartSheet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Transition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/Transition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/UpdateConroller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/delivery_service/UpdateClientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/registrationAdmin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/registrationAdmin.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/registrationClient.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/registrationClient.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/registrationCourier.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/registrationCourier.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/registrationManager.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/registrationManager.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/startSheet.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/startSheet.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/update.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/delivery_service/update.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,10 +83,10 @@
     "last_directory_selection": "D:/учеба/прикладное программирование/Курсовой проект/delivery_service/src/main/java/com/example/delivery_service",
     "last_opened_file_path": "D:/учеба/прикладное программирование/TwoList2.10",
     "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
+    "project.structure.proportion": "0.15625",
+    "project.structure.side.proportion": "0.2815759",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+    "settings.editor.selected.configurable": "project.propCompiler"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -247,7 +259,14 @@
       <option name="project" value="LOCAL" />
       <updated>1688382743852</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Регистрация админов, добавление новых центров доставок. Клиенты, курьеры, менеджеры и админы наследуются от Пользователя">
+      <created>1688400104463</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1688400104463</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -267,7 +286,8 @@
     <MESSAGE value="Удаление аккаунтов курьеров и менеджеров с аккаунта АДМИНА" />
     <MESSAGE value="Удаление аккаунтов курьеров и менеджеров с аккаунта АДМИНА (рабочая)" />
     <MESSAGE value="Присвоение ближайшего цд клиенту через аккаунт администратора" />
-    <option name="LAST_COMMIT_MESSAGE" value="Присвоение ближайшего цд клиенту через аккаунт администратора" />
+    <MESSAGE value="Регистрация админов, добавление новых центров доставок. Клиенты, курьеры, менеджеры и админы наследуются от Пользователя" />
+    <option name="LAST_COMMIT_MESSAGE" value="Регистрация админов, добавление новых центров доставок. Клиенты, курьеры, менеджеры и админы наследуются от Пользователя" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -1,9 +1,7 @@
 package com.example.delivery_service;
 
-import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -13,14 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-public class UpdateConroller {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
+public class UpdateClientController {
     @FXML
     private TextField address;
 
@@ -133,9 +124,9 @@ public class UpdateConroller {
 
         String hashedPassword = PasswordHasher.hashPassword(passwordRegistrationText);
 
-        Client client = new Client(nameText, numberText, addressText, loginRegistrationText, hashedPassword);
+        UpdateClient updateClient = new UpdateClient(nameText, numberText, addressText, loginRegistrationText, hashedPassword);
 
-        DatabaseConnection.getInstance().updateUser(client);
+        DatabaseConnection.getInstance().updateUser(updateClient);
 
     }
 

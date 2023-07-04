@@ -17,41 +17,41 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class BaseAdminController {
 
     @FXML
-    private TableColumn<Admin, String> center_delivery_courier;
+    private TableColumn<InformForAdmin, String> center_delivery_courier;
 
     @FXML
-    private TableColumn<Admin, String> center_delivery_manager;
+    private TableColumn<InformForAdmin, String> center_delivery_manager;
 
     @FXML
-    private TableView<Admin> courier;
+    private TableView<InformForAdmin> courier;
 
     @FXML
     private Button exit;
 
     @FXML
-    private TableColumn<Admin, String> login_courier;
+    private TableColumn<InformForAdmin, String> login_courier;
 
     @FXML
-    private TableColumn<Admin, String> login_manager;
+    private TableColumn<InformForAdmin, String> login_manager;
 
     @FXML
-    private TableView<Admin> manager;
+    private TableView<InformForAdmin> manager;
 
     @FXML
-    private TableColumn<Admin, String> name_courier;
+    private TableColumn<InformForAdmin, String> name_courier;
 
     @FXML
-    private TableColumn<Admin, String> name_manager;
+    private TableColumn<InformForAdmin, String> name_manager;
 
 
     @FXML
-    private TableColumn<Admin, String> number_courier;;
+    private TableColumn<InformForAdmin, String> number_courier;;
 
     @FXML
-    private TableColumn<Admin, Button> ok_courier;
+    private TableColumn<InformForAdmin, Button> ok_courier;
 
     @FXML
-    private TableColumn<Admin, Button> ok_manager;
+    private TableColumn<InformForAdmin, Button> ok_manager;
 
     @FXML
     private Button nearest_dc;
@@ -81,7 +81,7 @@ public class BaseAdminController {
 
         // Установка фабрики значений для столбца "ok"
         ok_manager.setCellFactory(column -> {
-            return new TableCell<Admin, Button>() {
+            return new TableCell<InformForAdmin, Button>() {
                 @Override
                 protected void updateItem(Button item, boolean empty) {
                     super.updateItem(item, empty);
@@ -102,7 +102,7 @@ public class BaseAdminController {
 
         // Установка фабрики значений для столбца "ok"
         ok_courier.setCellFactory(column -> {
-            return new TableCell<Admin, Button>() {
+            return new TableCell<InformForAdmin, Button>() {
                 @Override
                 protected void updateItem(Button item, boolean empty) {
                     super.updateItem(item, empty);
@@ -169,44 +169,46 @@ public class BaseAdminController {
 
     private void dataADMIN() throws SQLException, ClassNotFoundException {
         ArrayList<String> p = DatabaseConnection.getInstance().adminCourier();
-        ObservableList<Admin> datas = FXCollections.observableArrayList();
+        ObservableList<InformForAdmin> datas = FXCollections.observableArrayList();
         for (int i = 0; i < p.size(); i++){
             String str = p.get(i);
             String[] s = str.split("\\*");
             Button button = new Button("Удалить");
+            InformForAdmin informForAdmin = new InformForAdmin(s[0], s[1], s[2], s[3], button);
+            datas.add(informForAdmin);
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
                     try {
-                        deleteCourier(s[2]);
+                        deleteCourier(informForAdmin);
                         dataADMIN();
                     } catch (SQLException | ClassNotFoundException e) {
                         e.printStackTrace();
                     }
                 }
-            });
-            datas.add(new Admin(s[0], s[1], s[2], s[3], button));
+            });;
 
         }
 
         ArrayList<String> q = DatabaseConnection.getInstance().adminManager();
-        ObservableList<Admin> data = FXCollections.observableArrayList();
+        ObservableList<InformForAdmin> data = FXCollections.observableArrayList();
         for (int i = 0; i < q.size(); i++){
             String str = q.get(i);
             String[] s = str.split("\\*");
             Button button = new Button("Удалить");
+            InformForAdmin informForAdmin1 = new InformForAdmin(s[0], s[1], s[2], button);
+            data.add(informForAdmin1);
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
                     try {
-                        deleteManager(s[1]);
+                        deleteManager(informForAdmin1);
                         dataADMIN();
                     } catch (SQLException | ClassNotFoundException e) {
                         e.printStackTrace();
                     }
                 }
             });
-            data.add(new Admin(s[0], s[1], s[2], button));
         }
 
         courier.setItems(datas);
@@ -215,12 +217,12 @@ public class BaseAdminController {
         courier.refresh();
     }
 
-    private void deleteCourier(String login) throws SQLException, ClassNotFoundException {
-        DatabaseConnection.getInstance().deleteCourier(login);
+    private void deleteCourier(InformForAdmin informForAdmin) throws SQLException, ClassNotFoundException {
+        DatabaseConnection.getInstance().deleteCourier(informForAdmin);
     }
 
-    private void deleteManager(String login) throws SQLException, ClassNotFoundException {
-        DatabaseConnection.getInstance().deleteManager(login);
+    private void deleteManager(InformForAdmin informForAdmin) throws SQLException, ClassNotFoundException {
+        DatabaseConnection.getInstance().deleteManager(informForAdmin);
     }
 
 

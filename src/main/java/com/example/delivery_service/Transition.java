@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class Transition {
-    public static  void changeScene(ActionEvent event, String fxml, String title){
+    public static void changeScene(ActionEvent event, String fxml, String title){
         Parent root = null;
 
         try{
